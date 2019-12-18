@@ -2,18 +2,21 @@
   <div id="app">
     <Header facil="Facil" enantes="E-Nantes"/>
     <Picto />
+    <Map />
   </div>
 </template>
 
 <script>
 import Header from './components/Header.vue';
 import Picto from './components/Picto.vue';
+import Map from './components/Map.vue'
 
 export default {
   name: 'app',
   components: {
     Header,
-    Picto
+    Picto,
+    Map
   }
 }
 </script>
