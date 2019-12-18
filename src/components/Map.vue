@@ -1,11 +1,6 @@
 <template>
   <div style="height: 500px; width: 500px">
-    <!-- <div class="info" style="height: 15%">
-      <span>Center: {{ center }}</span>
-      <span>Zoom: {{ zoom }}</span>
-      <span>Bounds: {{ bounds }}</span>
-    </div> -->
-    <l-map
+    <LMap
       style="height: 80%; width: 100%"
       :zoom="zoom"
       :center="center"
@@ -13,55 +8,61 @@
       @update:center="centerUpdated"
       @update:bounds="boundsUpdated"
     >
-      <l-tile-layer :url="url"></l-tile-layer>
-    </l-map>
+      <LTileLayer :url="url"></LTileLayer>
+      <LMarker :lat-lng="markerLatLng"></LMarker>
+    </LMap>
   </div>
 </template>
 
 <script>
-import {LMap, LTileLayer, LMarker } from 'vue2-leaflet';
-import Vue from 'vue';
-import 'leaflet/dist/leaflet.css'
+import { LMap, LTileLayer, LMarker } from "vue2-leaflet";
+import { Icon } from "leaflet";
+import Vue from "vue";
+import "leaflet/dist/leaflet.css";
 
+Vue.component("l-map", LMap);
+Vue.component("l-tile-layer", LTileLayer);
+Vue.component("l-marker", LMarker);
 
+delete Icon.Default.prototype._getIconUrl;
 
-Vue.component('l-map', LMap)
-Vue.component('l-tile-layer', LTileLayer)
+Icon.Default.mergeOptions({
+  iconRetinaUrl: require("leaflet/dist/images/marker-icon-2x.png"),
+  iconUrl: require("leaflet/dist/images/marker-icon.png"),
+  shadowUrl: require("leaflet/dist/images/marker-shadow.png")
+});
 
 export default {
-  data () {
+  data() {
     return {
-      url: 'http://{s}.tile.osm.org/{z}/{x}/{y}.png',
+      url: "http://{s}.tile.osm.org/{z}/{x}/{y}.png",
       zoom: 13,
       center: [47.213039, -1.549931],
-      bounds: null
+      markerLatLng: [47.216303, -1.550231]
     };
   },
   methods: {
-    zoomUpdated (zoom) {
+    zoomUpdated(zoom) {
       this.zoom = zoom;
     },
-    centerUpdated (center) {
+    centerUpdated(center) {
       this.center = center;
     },
-    boundsUpdated (bounds) {
+    boundsUpdated(bounds) {
       this.bounds = bounds;
     }
   },
-   name: 'Map',
-    components: {
-      LMap,
-      LTileLayer,
-      LMarker,
+  name: "Map",
+  components: {
+    LMap,
+    LTileLayer,
+    LMarker
   }
-}
+};
 </script>
 
 
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-
-
-
 </style>
