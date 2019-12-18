@@ -1,19 +1,36 @@
 <template>
-  <div style="height: 500px; width: 500px">
-    <input type="checkbox" id="toilette" value="toilette" v-model="toiletteShow"/>
-    <label for="toilette">Toilettes Public</label>
-    <input type="checkbox" id="Gonfleur" value="Gonfleur" v-model="gonfleurShow">
-    <label for="Gonfleur">Gonfleur à velo en libre service</label>
-    <input type="checkbox" id="Abris-vélo" value="Abris-vélo" v-model="abrisShow">
-    <label for="Abris-vélo">Abris vélo</label>
-    <input type="checkbox" id="Wifi" value="Wifi" v-model="wifiShow">
-    <label for="Wifi">Wifi Public</label>
-    <input type="checkbox" id="Composteur" value="Composteur" v-model="composteShow">
-    <label for="Composteur">Composteur de quartier</label>
-    <input type="checkbox" id="decheterie" value="decheterie" v-model="decheteriesShow">
-    <label for="decheterie">Décheteries</label>
-    <input type="checkbox" id="defibrillateur" value="defibrillateur" v-model="decheteriesShow">
-    <label for="defibrillateur">Défibrillateur</label>
+  <div style="height: 500px; width: 100%">
+    <ul class="firstInput">
+      <li>
+        <input type="checkbox" id="toilette" value="toilette" v-model="toiletteShow"/>
+        <label for="toilette">Toilettes Public</label>
+      </li>
+      <li>
+        <input type="checkbox" id="Gonfleur" value="Gonfleur" v-model="gonfleurShow">
+        <label for="Gonfleur">Gonfleur à velo en libre service</label>
+      </li>
+      <li>
+        <input type="checkbox" id="Abris-vélo" value="Abris-vélo" v-model="abrisShow">
+        <label for="Abris-vélo">Abris vélo</label>
+      </li>
+      <li>
+        <input type="checkbox" id="Wifi" value="Wifi" v-model="wifiShow">
+        <label for="Wifi">Wifi Public</label>
+      </li>
+    </ul>
+    <ul class="secondInput">
+      <li>
+        <input type="checkbox" id="Composteur" value="Composteur" v-model="composteShow">
+        <label for="Composteur">Composteur de quartier</label>
+      </li>
+      <li>
+        <input type="checkbox" id="decheterie" value="decheterie" v-model="decheteriesShow">
+        <label for="decheterie">Décheteries</label>
+      </li>
+    </ul>
+    <!-- <input type="checkbox" id="defibrillateur" value="defibrillateur" v-model="defibrillateurShow">
+    <label for="defibrillateur">Défibrillateur</label> -->
+
     <LMap
       style="height: 80%; width: 100%"
       :zoom="zoom"
@@ -29,13 +46,13 @@
       <LMarker v-if="abrisShow === true" id="abris" v-for="record in abris" :show='false' :key="record.recordid" :lat-lng="[record.geometry.coordinates[1], record.geometry.coordinates[0]]"></LMarker>
       <LMarker v-if="wifiShow === true" id="wifi" v-for="record in wifi" :show='false' :key="record.recordid" :lat-lng="[record.geometry.coordinates[1], record.geometry.coordinates[0]]"></LMarker>
       <LMarker v-if="decheteriesShow === true" id="decheterie" v-for="record in decheteries" :show='false' :key="record.recordid" :lat-lng="[record.geometry.coordinates[1], record.geometry.coordinates[0]]"></LMarker>
-      <LMarker v-if="defibrillateurShow === true" id="decheterie" v-for="record in defibrillateur" :show='false' :key="record.recordid" :lat-lng="[record.geometry.coordinates[1], record.geometry.coordinates[0]]"></LMarker>
+      <LMarker v-if="defibrillateurShow === true" id="defibrillateur" v-for="record in defibrillateur" :show='false' :key="record.recordid" :lat-lng="[record.geometry.coordinates[1], record.geometry.coordinates[0]]"></LMarker>
     </LMap>
   </div>
 </template>
 
 <script>
-import { LMap, LTileLayer, LMarker } from "vue2-leaflet";
+import { LMap, LTileLayer, LMarker, LIcon } from "vue2-leaflet";
 import { Icon } from "leaflet";
 import Vue from "vue";
 import "leaflet/dist/leaflet.css";
@@ -44,14 +61,8 @@ import axios from 'axios';
 Vue.component("l-map", LMap);
 Vue.component("l-tile-layer", LTileLayer);
 Vue.component("l-marker", LMarker);
+Vue.component("l-icon", LIcon);
 
-delete Icon.Default.prototype._getIconUrl;
-
-Icon.Default.mergeOptions({
-  iconRetinaUrl: require("leaflet/dist/images/marker-icon-2x.png"),
-  iconUrl: require("leaflet/dist/images/marker-icon.png"),
-  shadowUrl: require("leaflet/dist/images/marker-shadow.png")
-});
 
 export default {
   data() {
@@ -74,7 +85,7 @@ export default {
       abrisShow: false,
       composteShow: false,
       toiletteShow: false,
-      gonfleurShow: false
+      gonfleurShow: false,
     };
   },
   beforeCreate() {
@@ -104,11 +115,22 @@ export default {
       this.bounds = bounds;
     }
   },
+
+    computed: {
+    dynamicSize() {
+      return [this.iconSize, this.iconSize * 1.15];
+    },
+    dynamicAnchor() {
+      return [this.iconSize / 2, this.iconSize * 1.15];
+    }
+  },
+
   name: "Map",
   components: {
     LMap,
     LTileLayer,
-    LMarker
+    LMarker,
+    LIcon
   }
 };
 </script>
@@ -117,4 +139,28 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+
+.firstInput{
+  align-items: center;
+  display: flex;
+  list-style: none;
+  flex-direction: row;
+  justify-content: space-evenly;
+  margin-top: 29px;
+}
+.secondInput{
+  align-items: center;
+  display: flex;
+  list-style: none;
+  flex-direction: row;
+  justify-content: space-evenly;
+  margin-top: 29px;
+  margin-bottom: 29px;
+}
+
+input{
+  margin-right: 5px;
+}
+
+
 </style>
