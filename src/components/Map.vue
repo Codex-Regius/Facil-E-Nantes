@@ -12,7 +12,7 @@
     <label for="Composteur">Composteur de quartier</label>
     <input type="checkbox" id="decheterie" value="decheterie" v-model="decheteriesShow">
     <label for="decheterie">Décheteries</label>
-    <input type="checkbox" id="defibrillateur" value="defibrillateur" v-model="decheteriesShow">
+    <input type="checkbox" id="defibrillateur" value="defibrillateur" v-model="defibrillateurShow">
     <label for="defibrillateur">Défibrillateur</label>
     <LMap
       style="height: 80%; width: 100%"
@@ -29,7 +29,7 @@
       <LMarker v-if="abrisShow === true" id="abris" v-for="record in abris" :show='false' :key="record.recordid" :lat-lng="[record.geometry.coordinates[1], record.geometry.coordinates[0]]"></LMarker>
       <LMarker v-if="wifiShow === true" id="wifi" v-for="record in wifi" :show='false' :key="record.recordid" :lat-lng="[record.geometry.coordinates[1], record.geometry.coordinates[0]]"></LMarker>
       <LMarker v-if="decheteriesShow === true" id="decheterie" v-for="record in decheteries" :show='false' :key="record.recordid" :lat-lng="[record.geometry.coordinates[1], record.geometry.coordinates[0]]"></LMarker>
-      <LMarker v-if="defibrillateurShow === true" id="decheterie" v-for="record in defibrillateur" :show='false' :key="record.recordid" :lat-lng="[record.geometry.coordinates[1], record.geometry.coordinates[0]]"></LMarker>
+      <LMarker v-for="record in defibrillateur" v-if="record.geometry !== undefined && defibrillateurShow === true" id="defibrillateur"  :show='false' :key="record.recordid" :lat-lng="[record.geometry.coordinates[1], record.geometry.coordinates[0]]"></LMarker>
     </LMap>
   </div>
 </template>
@@ -52,6 +52,7 @@ Icon.Default.mergeOptions({
   iconUrl: require("leaflet/dist/images/marker-icon.png"),
   shadowUrl: require("leaflet/dist/images/marker-shadow.png")
 });
+
 
 export default {
   data() {
@@ -91,7 +92,7 @@ export default {
     axios.get('https://data.nantesmetropole.fr/api/records/1.0/search/?dataset=244400404_decheteries-ecopoints-nantes-metropole&rows=15&facet=libtype&facet=commune&facet=batteries&facet=bois&facet=carton&facet=gravats&facet=deee&facet=encombrants_menagers&facet=ferrailles&facet=huiles_moteur&facet=papiers_journaux_livres&facet=plastiques_menagers&facet=pneus&facet=textiles&facet=dechets_verts&facet=verre&facet=piles&facet=mobilier&facet=cartouches&facet=extincteur&facet=neons_lampes&facet=dechets_dangereux&facet=bouteilles_gaz')
     .then(response => {this.decheteries = response.data.records}),
     axios.get('https://data.nantesmetropole.fr/api/records/1.0/search/?dataset=244400404_defibrillateurs-nantes&rows=158&sort=designation&facet=nature_site')
-    .then(response => {this.defibrillateur = response.data.records, console.log(response.data.records)})
+    .then(response => {this.defibrillateur = response.data.records})
   },
   methods: {
     zoomUpdated(zoom) {
