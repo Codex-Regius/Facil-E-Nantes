@@ -1,7 +1,6 @@
 <template>
   <div id="app">
     <Header facil="Facil" enantes="E-Nantes"/>
-    <Picto />
     <Map />
   </div>
 </template>
