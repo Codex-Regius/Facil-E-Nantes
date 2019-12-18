@@ -10,12 +10,13 @@
     >
       <LTileLayer :url="url"></LTileLayer>
       <LMarker :lat-lng="markerLatLng"></LMarker>
+      <LPolygon :lat-lngs="polygon.coords" :color="polygon.color"></LPolygon>
     </LMap>
   </div>
 </template>
 
 <script>
-import { LMap, LTileLayer, LMarker } from "vue2-leaflet";
+import { LMap, LTileLayer, LMarker, LPolygon } from "vue2-leaflet";
 import { Icon } from "leaflet";
 import Vue from "vue";
 import "leaflet/dist/leaflet.css";
@@ -23,6 +24,7 @@ import "leaflet/dist/leaflet.css";
 Vue.component("l-map", LMap);
 Vue.component("l-tile-layer", LTileLayer);
 Vue.component("l-marker", LMarker);
+Vue.component("l-polygon", LPolygon);
 
 delete Icon.Default.prototype._getIconUrl;
 
@@ -39,7 +41,19 @@ export default {
         "https://api.mapbox.com/styles/v1/mapbox/streets-v11/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibGlyYXVkLWNvZWwiLCJhIjoiY2szem5od2Z4MGFrOTNnbW1ka3MwZWVlMSJ9.qKdr77MJ0XXL-t6Ii6yH8A",
       zoom: 13,
       center: [47.213039, -1.549931],
-      markerLatLng: [47.216303, -1.550231]
+      markerLatLng: [47.216303, -1.550231],
+      polygon: {
+        name: "Bouffay",
+        coords: [
+          [47.217778, -1.557083],
+          [47.218171, -1.551526],
+          [47.218346, -1.551311],
+          [47.219468, -1.549358],
+          [47.216408, -1.546762],
+          [47.213857, -1.55498]
+        ],
+        color: "lightGreen"
+      }
     };
   },
   methods: {
@@ -57,7 +71,8 @@ export default {
   components: {
     LMap,
     LTileLayer,
-    LMarker
+    LMarker,
+    LPolygon
   }
 };
 </script>
