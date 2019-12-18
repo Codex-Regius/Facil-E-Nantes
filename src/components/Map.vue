@@ -35,7 +35,8 @@ Icon.Default.mergeOptions({
 export default {
   data() {
     return {
-      url: "http://{s}.tile.osm.org/{z}/{x}/{y}.png",
+      url:
+        "https://api.mapbox.com/styles/v1/mapbox/streets-v11/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibGlyYXVkLWNvZWwiLCJhIjoiY2szem5od2Z4MGFrOTNnbW1ka3MwZWVlMSJ9.qKdr77MJ0XXL-t6Ii6yH8A",
       zoom: 13,
       center: [47.213039, -1.549931],
       markerLatLng: [47.216303, -1.550231]
