@@ -1,16 +1,19 @@
 <template>
   <div id="app">
     <Header facil="Facil" enantes="E-Nantes"/>
+    <Picto />
   </div>
 </template>
 
 <script>
-import Header from './components/Header.vue'
+import Header from './components/Header.vue';
+import Picto from './components/Picto.vue';
 
 export default {
   name: 'app',
   components: {
-    Header
+    Header,
+    Picto
   }
 }
 </script>
