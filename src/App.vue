@@ -1,19 +1,22 @@
 <template>
   <div id="app">
     <Header facil="Facil" enantes="E-Nantes"/>
-    <Map />
+    <Map /> 
+    <Defibrilateur />
   </div>
 </template>
 
 <script>
 import Header from './components/Header.vue'
 import Map from './components/Map.vue'
+import Defibrilateur from './components/Defibrilateur.vue'
 
 export default {
   name: 'app',
   components: {
     Header,
-    Map
+    Map,
+    Defibrilateur
   }
 }
 </script>

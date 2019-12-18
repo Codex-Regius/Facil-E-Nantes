@@ -1,5 +1,5 @@
 <template>
-  <div style="height: 500px; width: 500px">
+  <div style="height: 500px; width: 100%">
     <LMap
       style="height: 80%; width: 100%"
       :zoom="zoom"
