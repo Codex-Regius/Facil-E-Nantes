@@ -36,17 +36,18 @@ import axios from 'axios';
 export default {
   name: 'Picto',
   props: {
+    records: []
   },
   data(){
     return {
-      nom : [],
-      checkedNames: [],
+      // nom : [],
+      checkedNames: []
     }
   },
-   beforeCreate() {
-     axios.get('https://data.nantesmetropole.fr/api/records/1.0/search/?dataset=244400404_toilettes-publiques-nantes-metropole&rows=65&facet=commune&facet=pole&facet=type&facet=automatique&facet=acces_pmr&refine.commune=Nantes&exclude.commune=Thouar%C3%A9-sur-Loire&exclude.commune=Carquefou&exclude.commune=Rez%C3%A9&exclude.commune=Le+Pellerin')
-    .then(response => this.nom = response.data.records)
-  }
+  //  beforeCreate() {
+  //    axios.get('https://data.nantesmetropole.fr/api/records/1.0/search/?dataset=244400404_toilettes-publiques-nantes-metropole&rows=65&facet=commune&facet=pole&facet=type&facet=automatique&facet=acces_pmr&refine.commune=Nantes&exclude.commune=Thouar%C3%A9-sur-Loire&exclude.commune=Carquefou&exclude.commune=Rez%C3%A9&exclude.commune=Le+Pellerin')
+  //   .then(response => this.records = response.data.records)
+  // }
 }
 </script>
 
