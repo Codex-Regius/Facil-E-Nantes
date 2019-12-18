@@ -1,4 +1,5 @@
 <template>
+<<<<<<< HEAD
   <div style="height: 500px; width: 100%">
     <ul class="firstInput">
       <li>
@@ -31,6 +32,23 @@
     <!-- <input type="checkbox" id="defibrillateur" value="defibrillateur" v-model="defibrillateurShow">
     <label for="defibrillateur">Défibrillateur</label> -->
 
+=======
+  <div style="height: 500px; width: 500px">
+    <input type="checkbox" id="toilette" value="toilette" v-model="toiletteShow"/>
+    <label for="toilette">Toilettes Public</label>
+    <input type="checkbox" id="Gonfleur" value="Gonfleur" v-model="gonfleurShow">
+    <label for="Gonfleur">Gonfleur à velo en libre service</label>
+    <input type="checkbox" id="Abris-vélo" value="Abris-vélo" v-model="abrisShow">
+    <label for="Abris-vélo">Abris vélo</label>
+    <input type="checkbox" id="Wifi" value="Wifi" v-model="wifiShow">
+    <label for="Wifi">Wifi Public</label>
+    <input type="checkbox" id="Composteur" value="Composteur" v-model="composteShow">
+    <label for="Composteur">Composteur de quartier</label>
+    <input type="checkbox" id="decheterie" value="decheterie" v-model="decheteriesShow">
+    <label for="decheterie">Décheteries</label>
+    <input type="checkbox" id="defibrillateur" value="defibrillateur" v-model="defibrillateurShow">
+    <label for="defibrillateur">Défibrillateur</label>
+>>>>>>> ceec1dde1ed063007ed22381ac76190700f9de7f
     <LMap
       style="height: 80%; width: 100%"
       :zoom="zoom"
@@ -46,7 +64,11 @@
       <LMarker v-if="abrisShow === true" id="abris" v-for="record in abris" :show='false' :key="record.recordid" :lat-lng="[record.geometry.coordinates[1], record.geometry.coordinates[0]]"></LMarker>
       <LMarker v-if="wifiShow === true" id="wifi" v-for="record in wifi" :show='false' :key="record.recordid" :lat-lng="[record.geometry.coordinates[1], record.geometry.coordinates[0]]"></LMarker>
       <LMarker v-if="decheteriesShow === true" id="decheterie" v-for="record in decheteries" :show='false' :key="record.recordid" :lat-lng="[record.geometry.coordinates[1], record.geometry.coordinates[0]]"></LMarker>
+<<<<<<< HEAD
       <LMarker v-if="defibrillateurShow === true" id="defibrillateur" v-for="record in defibrillateur" :show='false' :key="record.recordid" :lat-lng="[record.geometry.coordinates[1], record.geometry.coordinates[0]]"></LMarker>
+=======
+      <LMarker v-for="record in defibrillateur" v-if="record.geometry !== undefined && defibrillateurShow === true" id="defibrillateur"  :show='false' :key="record.recordid" :lat-lng="[record.geometry.coordinates[1], record.geometry.coordinates[0]]"></LMarker>
+>>>>>>> ceec1dde1ed063007ed22381ac76190700f9de7f
     </LMap>
   </div>
 </template>
@@ -62,6 +84,7 @@ Vue.component("l-map", LMap);
 Vue.component("l-tile-layer", LTileLayer);
 Vue.component("l-marker", LMarker);
 Vue.component("l-icon", LIcon);
+
 
 
 export default {
@@ -102,7 +125,7 @@ export default {
     axios.get('https://data.nantesmetropole.fr/api/records/1.0/search/?dataset=244400404_decheteries-ecopoints-nantes-metropole&rows=15&facet=libtype&facet=commune&facet=batteries&facet=bois&facet=carton&facet=gravats&facet=deee&facet=encombrants_menagers&facet=ferrailles&facet=huiles_moteur&facet=papiers_journaux_livres&facet=plastiques_menagers&facet=pneus&facet=textiles&facet=dechets_verts&facet=verre&facet=piles&facet=mobilier&facet=cartouches&facet=extincteur&facet=neons_lampes&facet=dechets_dangereux&facet=bouteilles_gaz')
     .then(response => {this.decheteries = response.data.records}),
     axios.get('https://data.nantesmetropole.fr/api/records/1.0/search/?dataset=244400404_defibrillateurs-nantes&rows=158&sort=designation&facet=nature_site')
-    .then(response => {this.defibrillateur = response.data.records, console.log(response.data.records)})
+    .then(response => {this.defibrillateur = response.data.records})
   },
   methods: {
     zoomUpdated(zoom) {
