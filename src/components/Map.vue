@@ -28,8 +28,8 @@
         <label for="decheterie">Décheteries</label>
       </li>
     </ul>
-    <!-- <input type="checkbox" id="defibrillateur" value="defibrillateur" v-model="defibrillateurShow">
-    <label for="defibrillateur">Défibrillateur</label> -->
+    <input type="checkbox" id="defibrillateur" value="defibrillateur" v-model="defibrillateurShow">
+    <label for="defibrillateur">Défibrillateur</label>
 
     <LMap
       style="height: 80%; width: 100%"
