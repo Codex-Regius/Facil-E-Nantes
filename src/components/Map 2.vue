@@ -10,7 +10,6 @@
     >
       <LTileLayer :url="url"></LTileLayer>
       <LMarker :lat-lng="markerLatLng"></LMarker>
-      <LMarker id="toilette" v-for="record in toilette" :show='false' :key="record.recordid" :lat-lng="[record.geometry.coordinates[1], record.geometry.coordinates[0]]"></LMarker>
     </LMap>
   </div>
 </template>
@@ -20,7 +19,6 @@ import { LMap, LTileLayer, LMarker } from "vue2-leaflet";
 import { Icon } from "leaflet";
 import Vue from "vue";
 import "leaflet/dist/leaflet.css";
-import axios from 'axios';
 
 Vue.component("l-map", LMap);
 Vue.component("l-tile-layer", LTileLayer);
@@ -41,14 +39,8 @@ export default {
         "https://api.mapbox.com/styles/v1/mapbox/streets-v11/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibGlyYXVkLWNvZWwiLCJhIjoiY2szem5od2Z4MGFrOTNnbW1ka3MwZWVlMSJ9.qKdr77MJ0XXL-t6Ii6yH8A",
       zoom: 13,
       center: [47.213039, -1.549931],
-      markerLatLng: [47.216303, -1.550231],
-      toilette: [],
-      show: false,
+      markerLatLng: [47.216303, -1.550231]
     };
-  },
-  beforeCreate() {
-     axios.get('https://data.nantesmetropole.fr/api/records/1.0/search/?dataset=244400404_toilettes-publiques-nantes-metropole&rows=65&facet=commune&facet=pole&facet=type&facet=automatique&facet=acces_pmr&refine.commune=Nantes&exclude.commune=Thouar%C3%A9-sur-Loire&exclude.commune=Carquefou&exclude.commune=Rez%C3%A9&exclude.commune=Le+Pellerin')
-    .then(response => {this.toilette = response.data.records, console.log(response.data.records)})
   },
   methods: {
     zoomUpdated(zoom) {
