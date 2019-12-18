@@ -15,6 +15,7 @@
         :key="index"
         :lat-lngs="polygo.coords"
         :color="polygo.color"
+        :fillColor="polygo.fillColor"
       ></LPolygon>
     </LMap>
   </div>
@@ -77,7 +78,8 @@ export default {
             [47.209712, -1.570547],
             [47.214347, -1.572178]
           ],
-          color: "lightGreen"
+          color: false,
+          fillColor: "lightGreen"
         },
         {
           name: "île de Nantes",
@@ -93,7 +95,8 @@ export default {
             [47.200032, -1.543596],
             [47.199186, -1.574281]
           ],
-          color: "orchid"
+          color: false,
+          fillColor: "orchid"
         },
         {
           name: "Malakoff Saint-Donatien",
@@ -113,7 +116,8 @@ export default {
             [47.231915, -1.5483],
             [47.235307, -1.548684]
           ],
-          color: "steelBlue"
+          color: false,
+          fillColor: "steelBlue"
         },
         {
           name: "Doulon-Bottière",
@@ -137,7 +141,8 @@ export default {
             [47.233307, -1.533141],
             [47.23389, -1.535887]
           ],
-          color: "tomato"
+          color: false,
+          fillColor: "tomato"
         },
         {
           name: "Haut-Pavés-Saint-Felix",
@@ -175,7 +180,8 @@ export default {
             [47.243567, -1.548737],
             [47.24262, -1.546484]
           ],
-          color: "yellow"
+          color: false,
+          fillColor: "yellow"
         },
         {
           name: "Breil Barberie",
@@ -210,7 +216,8 @@ export default {
             [47.238467, -1.587835],
             [47.239286, -1.589386]
           ],
-          color: "orange"
+          color: false,
+          fillColor: "orange"
         },
         {
           name: "Dervallières-Zola",
@@ -243,7 +250,8 @@ export default {
             [47.215359, -1.605707],
             [47.224512, -1.603175]
           ],
-          color: "cyan"
+          color: false,
+          fillColor: "cyan"
         },
         {
           name: "Chantenay-Bellevue-Sainte-Anne",
@@ -276,7 +284,8 @@ export default {
             [47.204307, -1.618284],
             [47.204161, -1.615473]
           ],
-          color: "salmon"
+          color: false,
+          fillColor: "salmon"
         },
         {
           name: "Nantes-Nord",
@@ -317,7 +326,8 @@ export default {
             [47.246533, -1.575481],
             [47.247262, -1.57737],
             [47.253721, -1.576372]
-          ]
+          ],
+          color: false
         },
         {
           name: "Nantes Erdre",
@@ -341,7 +351,8 @@ export default {
             [47.26878, -1.536151],
             [47.279961, -1.526023]
           ],
-          color: "lightCyan"
+          color: false,
+          fillColor: "purple"
         },
         {
           name: "Nantes Sud",
@@ -369,7 +380,8 @@ export default {
             [47.196921, -1.548869],
             [47.197154, -1.549555]
           ],
-          color: "Turquoise"
+          color: false,
+          fillColor: "Turquoise"
         }
       ]
     };
