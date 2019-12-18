@@ -1,5 +1,4 @@
 <template>
-<<<<<<< HEAD
   <div style="height: 500px; width: 100%">
     <ul class="firstInput">
       <li>
@@ -32,23 +31,6 @@
     <!-- <input type="checkbox" id="defibrillateur" value="defibrillateur" v-model="defibrillateurShow">
     <label for="defibrillateur">Défibrillateur</label> -->
 
-=======
-  <div style="height: 500px; width: 500px">
-    <input type="checkbox" id="toilette" value="toilette" v-model="toiletteShow"/>
-    <label for="toilette">Toilettes Public</label>
-    <input type="checkbox" id="Gonfleur" value="Gonfleur" v-model="gonfleurShow">
-    <label for="Gonfleur">Gonfleur à velo en libre service</label>
-    <input type="checkbox" id="Abris-vélo" value="Abris-vélo" v-model="abrisShow">
-    <label for="Abris-vélo">Abris vélo</label>
-    <input type="checkbox" id="Wifi" value="Wifi" v-model="wifiShow">
-    <label for="Wifi">Wifi Public</label>
-    <input type="checkbox" id="Composteur" value="Composteur" v-model="composteShow">
-    <label for="Composteur">Composteur de quartier</label>
-    <input type="checkbox" id="decheterie" value="decheterie" v-model="decheteriesShow">
-    <label for="decheterie">Décheteries</label>
-    <input type="checkbox" id="defibrillateur" value="defibrillateur" v-model="defibrillateurShow">
-    <label for="defibrillateur">Défibrillateur</label>
->>>>>>> ceec1dde1ed063007ed22381ac76190700f9de7f
     <LMap
       style="height: 80%; width: 100%"
       :zoom="zoom"
@@ -64,11 +46,7 @@
       <LMarker v-if="abrisShow === true" id="abris" v-for="record in abris" :show='false' :key="record.recordid" :lat-lng="[record.geometry.coordinates[1], record.geometry.coordinates[0]]"></LMarker>
       <LMarker v-if="wifiShow === true" id="wifi" v-for="record in wifi" :show='false' :key="record.recordid" :lat-lng="[record.geometry.coordinates[1], record.geometry.coordinates[0]]"></LMarker>
       <LMarker v-if="decheteriesShow === true" id="decheterie" v-for="record in decheteries" :show='false' :key="record.recordid" :lat-lng="[record.geometry.coordinates[1], record.geometry.coordinates[0]]"></LMarker>
-<<<<<<< HEAD
-      <LMarker v-if="defibrillateurShow === true" id="defibrillateur" v-for="record in defibrillateur" :show='false' :key="record.recordid" :lat-lng="[record.geometry.coordinates[1], record.geometry.coordinates[0]]"></LMarker>
-=======
       <LMarker v-for="record in defibrillateur" v-if="record.geometry !== undefined && defibrillateurShow === true" id="defibrillateur"  :show='false' :key="record.recordid" :lat-lng="[record.geometry.coordinates[1], record.geometry.coordinates[0]]"></LMarker>
->>>>>>> ceec1dde1ed063007ed22381ac76190700f9de7f
     </LMap>
   </div>
 </template>
@@ -85,7 +63,13 @@ Vue.component("l-tile-layer", LTileLayer);
 Vue.component("l-marker", LMarker);
 Vue.component("l-icon", LIcon);
 
+delete Icon.Default.prototype._getIconUrl;
 
+Icon.Default.mergeOptions({
+  iconRetinaUrl: require("leaflet/dist/images/marker-icon-2x.png"),
+  iconUrl: require("leaflet/dist/images/marker-icon.png"),
+  shadowUrl: require("leaflet/dist/images/marker-shadow.png")
+});
 
 export default {
   data() {
