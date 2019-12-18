@@ -1,16 +1,19 @@
 <template>
   <div id="app">
     <Header facil="Facil" enantes="E-Nantes"/>
+    <Map />
   </div>
 </template>
 
 <script>
 import Header from './components/Header.vue'
+import Map from './components/Map.vue'
 
 export default {
   name: 'app',
   components: {
-    Header
+    Header,
+    Map
   }
 }
 </script>
