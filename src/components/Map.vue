@@ -3,47 +3,47 @@
     <form>
       <ul>
         <li>
-          <input type="radio" id="centreville" @click="showPolygon(5)" name="centrevile"/>
+          <input type="checkbox" id="centreville" @click="showPolygon(5)" name="centrevile"/>
           <label for="centreville">Centre ville</label>
         </li>
         <li>
-          <input type="radio" id="iledenantes" @click="showPolygon(3)" name="iledenantes"/>
+          <input type="checkbox" id="iledenantes" @click="showPolygon(3)" name="iledenantes"/>
           <label for="iledenantes">Ile de nantes</label>
         </li>
         <li>
-          <input type="radio" id="malakoff" @click="showPolygon(1)" name="malakoff"/>
+          <input type="checkbox" id="malakoff" @click="showPolygon(1)" name="malakoff"/>
           <label for="malakoff">Malakoff Saint-Donatien</label>
         </li>
         <li>
-          <input type="radio" id="doulon-bottiere" @click="showPolygon(10)" name="doulon-bottiere"/>
+          <input type="checkbox" id="doulon-bottiere" @click="showPolygon(10)" name="doulon-bottiere"/>
           <label for="doulon-bottiere">Doulon-Bottière</label>
         </li>
         <li>
-          <input type="radio" id="hautPave-saintFelix" @click="showPolygon(4)" name="hautPave-saintFelix"/>
+          <input type="checkbox" id="hautPave-saintFelix" @click="showPolygon(4)" name="hautPave-saintFelix"/>
           <label for="hautPave-saintFelix">Haut Pavé - Saint Felix</label>
         </li>
         <li>
-          <input type="radio" id="breil-barberie" @click="showPolygon(8)" name="breil-barberie"/>
+          <input type="checkbox" id="breil-barberie" @click="showPolygon(8)" name="breil-barberie"/>
           <label for="breil-barberie">Breil barberie</label>
         </li>
         <li>
-          <input type="radio" id="dervalliere-zola" @click="showPolygon(0)" name="dervalliere-zola"/>
+          <input type="checkbox" id="dervalliere-zola" @click="showPolygon(0)" name="dervalliere-zola"/>
           <label for="dervalliere-zola">Dervallières - Zola</label>
         </li>
         <li>
-          <input type="radio" id="chantenay-bellevue-sainteAnne" @click="showPolygon(2)" name="chantenay-bellevue-sainteAnne"/>
+          <input type="checkbox" id="chantenay-bellevue-sainteAnne" @click="showPolygon(2)" name="chantenay-bellevue-sainteAnne"/>
           <label for="chantenay-bellevue-sainteAnne">Chantenay - Bellevue - Sainte Anne</label>
         </li>
         <li>
-          <input type="radio" id="nantesNord" @click="showPolygon(7)" name="nantesNord"/>
+          <input type="checkbox" id="nantesNord" @click="showPolygon(7)" name="nantesNord"/>
           <label for="nantesNord">Nantes Nord</label>
         </li>
         <li>
-          <input type="radio" id="nantesErdre" @click="showPolygon(6)" name="nantesErdre"/>
+          <input type="checkbox" id="nantesErdre" @click="showPolygon(6)" name="nantesErdre"/>
           <label for="nantesErdre">Nantes Erdre</label>
         </li>
         <li>
-          <input type="radio" id="nantesSud" @click="showPolygon(9)" name="nantesSud"/>
+          <input type="checkbox" id="nantesSud" @click="showPolygon(9)" name="nantesSud"/>
           <label for="nantesSud">Nantes Sud</label>
         </li>
       </ul>
