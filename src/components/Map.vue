@@ -2,47 +2,47 @@
   <div style="height: 500px; width: 100%">
     <ul>
       <li>
-        <input type="radio" id="centreville" @click="showPolygon(5)" />
+        <input type="checkbox" id="centreville" @click="showPolygon(5)" />
         <label for="centreville">Centre ville</label>
       </li>
       <li>
-        <input type="radio" id="iledenantes" @click="showPolygon(3)" />
+        <input type="checkbox" id="iledenantes" @click="showPolygon(3)" />
         <label for="iledenantes">Ile de nantes</label>
       </li>
       <li>
-        <input type="radio" id="malakoff" @click="showPolygon(1)" />
+        <input type="checkbox" id="malakoff" @click="showPolygon(1)" />
         <label for="malakoff">Malakoff Saint-Donatien</label>
       </li>
       <li>
-        <input type="radio" id="doulon-bottiere" @click="showPolygon(10)" />
+        <input type="checkbox" id="doulon-bottiere" @click="showPolygon(10)" />
         <label for="doulon-bottiere">Doulon-Bottière</label>
       </li>
       <li>
-        <input type="radio" id="hautPave-saintFelix" @click="showPolygon(4)" />
+        <input type="checkbox" id="hautPave-saintFelix" @click="showPolygon(4)" />
         <label for="hautPave-saintFelix">Haut Pavé - Saint Felix</label>
       </li>
       <li>
-        <input type="radio" id="breil-barberie" @click="showPolygon(8)" />
+        <input type="checkbox" id="breil-barberie" @click="showPolygon(8)" />
         <label for="breil-barberie">Breil barberie</label>
       </li>
       <li>
-        <input type="radio" id="dervalliere-zola" @click="showPolygon(0)" />
+        <input type="checkbox" id="dervalliere-zola" @click="showPolygon(0)" />
         <label for="dervalliere-zola">Dervallières - Zola</label>
       </li>
       <li>
-        <input type="radio" id="chantenay-bellevue-sainteAnne" @click="showPolygon(2)" />
+        <input type="checkbox" id="chantenay-bellevue-sainteAnne" @click="showPolygon(2)" />
         <label for="chantenay-bellevue-sainteAnne">Chantenay - Bellevue - Sainte Anne</label>
       </li>
       <li>
-        <input type="radio" id="nantesNord" @click="showPolygon(7)" />
+        <input type="checkbox" id="nantesNord" @click="showPolygon(7)" />
         <label for="nantesNord">Nantes Nord</label>
       </li>
       <li>
-        <input type="radio" id="nantesErdre" @click="showPolygon(6)" />
+        <input type="checkbox" id="nantesErdre" @click="showPolygon(6)" />
         <label for="nantesErdre">Nantes Erdre</label>
       </li>
       <li>
-        <input type="radio" id="nantesSud" @click="showPolygon(9)" />
+        <input type="checkbox" id="nantesSud" @click="showPolygon(9)" />
         <label for="nantesSud">Nantes Sud</label>
       </li>
     </ul>
@@ -170,6 +170,10 @@
         :fillColor="polygon.fillColor"
       ></LPolygon>
     </LMap>
+    <div id=defibrillateurButton>
+      <input type="checkbox" id="defibrillateur" value="defibrillateur" v-model="defibrillateurShow">
+      <label for="defibrillateur" id="defibrillateurLabel"><img src="../../public/Assets/defibrillatorWhite.png" /> Défibrillateurs</label>
+    </div>
   </div>
 </template>
 
@@ -349,4 +353,53 @@ export default {
 input {
   margin-right: 5px;
 }
+
+#defibrillateurButton{
+position: absolute;
+  z-index: 999;
+  bottom: 0px;
+  right: 128px;
+  background-color: rgb(30, 165, 30);
+  padding: 6%;
+  border-radius: 200px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+#defibrillateurButton img {
+  height: auto;
+  width: 54px;
+}
+
+#defibrillateur{
+  visibility: hidden;
+  display: none;
+}
+
+#defibrillateurLabel{
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  font-size: 11px;
+  font-weight: bold;
+  color: white;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
 </style>
