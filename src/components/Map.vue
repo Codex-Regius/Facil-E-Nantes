@@ -27,6 +27,10 @@
         <input type="checkbox" id="decheterie" value="decheterie" v-model="decheteriesShow">
         <label for="decheterie">Décheteries</label>
       </li>
+      <li>
+        <input type="checkbox" id="centreville" v-on:click="addPolygon(0)">
+        <label for="centreville">Centre ville</label>
+      </li>
     </ul>
     <input type="checkbox" id="defibrillateur" value="defibrillateur" v-model="defibrillateurShow">
     <label for="defibrillateur">Défibrillateur</label>
@@ -48,7 +52,7 @@
       <LMarker v-if="decheteriesShow === true" id="decheterie" v-for="record in decheteries" :show='false' :key="record.recordid" :lat-lng="[record.geometry.coordinates[1], record.geometry.coordinates[0]]"></LMarker>
       <LMarker v-for="record in defibrillateur" v-if="record.geometry !== undefined && defibrillateurShow === true" id="defibrillateur"  :show='false' :key="record.recordid" :lat-lng="[record.geometry.coordinates[1], record.geometry.coordinates[0]]"></LMarker>
       <LPolygon
-        v-for="(polygo, index) in polygon"
+        v-for="(polygo, index) in checkedPolygons"
         :key="index"
         :lat-lngs="polygo.coords"
         :color="polygo.color"
@@ -100,6 +104,7 @@ export default {
       composteShow: false,
       toiletteShow: false,
       gonfleurShow: false,
+      checkedPolygons: [],
       polygon: [
         {
           name: "Centre Ville",
@@ -452,6 +457,18 @@ export default {
     },
     boundsUpdated(bounds) {
       this.bounds = bounds;
+    },
+    addPolygon(index) {
+      if (this.checkedPolygons.length > 0) {
+        if (this.polygon[index].name !== this.checkedPolygons[index].name) {
+          console.log(this.polygon[index].name, this.checkedPolygons[index].name);
+        } else {
+          console.log('2');
+          this.checkedPolygons.splice(index, 1);
+        }
+      } else {
+        this.checkedPolygons.push(this.polygon[index]);
+      }
     }
   },
 
