@@ -2,47 +2,47 @@
   <div style="height: 500px; width: 100%">
     <ul>
       <li>
-        <input type="checkbox" id="centreville" @click="showPolygon(5)" />
+        <input type="radio" id="centreville" @click="showPolygon(5)" />
         <label for="centreville">Centre ville</label>
       </li>
       <li>
-        <input type="checkbox" id="iledenantes" @click="showPolygon(3)" />
+        <input type="radio" id="iledenantes" @click="showPolygon(3)" />
         <label for="iledenantes">Ile de nantes</label>
       </li>
       <li>
-        <input type="checkbox" id="malakoff" @click="showPolygon(1)" />
+        <input type="radio" id="malakoff" @click="showPolygon(1)" />
         <label for="malakoff">Malakoff Saint-Donatien</label>
       </li>
       <li>
-        <input type="checkbox" id="doulon-bottiere" @click="showPolygon(10)" />
+        <input type="radio" id="doulon-bottiere" @click="showPolygon(10)" />
         <label for="doulon-bottiere">Doulon-Bottière</label>
       </li>
       <li>
-        <input type="checkbox" id="hautPave-saintFelix" @click="showPolygon(4)" />
+        <input type="radio" id="hautPave-saintFelix" @click="showPolygon(4)" />
         <label for="hautPave-saintFelix">Haut Pavé - Saint Felix</label>
       </li>
       <li>
-        <input type="checkbox" id="breil-barberie" @click="showPolygon(8)" />
+        <input type="radio" id="breil-barberie" @click="showPolygon(8)" />
         <label for="breil-barberie">Breil barberie</label>
       </li>
       <li>
-        <input type="checkbox" id="dervalliere-zola" @click="showPolygon(0)" />
+        <input type="radio" id="dervalliere-zola" @click="showPolygon(0)" />
         <label for="dervalliere-zola">Dervallières - Zola</label>
       </li>
       <li>
-        <input type="checkbox" id="chantenay-bellevue-sainteAnne" @click="showPolygon(2)" />
+        <input type="radio" id="chantenay-bellevue-sainteAnne" @click="showPolygon(2)" />
         <label for="chantenay-bellevue-sainteAnne">Chantenay - Bellevue - Sainte Anne</label>
       </li>
       <li>
-        <input type="checkbox" id="nantesNord" @click="showPolygon(7)" />
+        <input type="radio" id="nantesNord" @click="showPolygon(7)" />
         <label for="nantesNord">Nantes Nord</label>
       </li>
       <li>
-        <input type="checkbox" id="nantesErdre" @click="showPolygon(6)" />
+        <input type="radio" id="nantesErdre" @click="showPolygon(6)" />
         <label for="nantesErdre">Nantes Erdre</label>
       </li>
       <li>
-        <input type="checkbox" id="nantesSud" @click="showPolygon(9)" />
+        <input type="radio" id="nantesSud" @click="showPolygon(9)" />
         <label for="nantesSud">Nantes Sud</label>
       </li>
     </ul>
@@ -167,7 +167,6 @@
         v-if="polygon.show === true"
         :key="index"
         :lat-lngs="polygon.coords"
-        :color="polygon.color"
         :fillColor="polygon.fillColor"
       ></LPolygon>
     </LMap>
@@ -283,7 +282,6 @@ export default {
             return {
               coords: reverseArray.map(param => param.reverse()),
               show: false,
-              color: false,
               fillColor: "tomato"
             };
           });
