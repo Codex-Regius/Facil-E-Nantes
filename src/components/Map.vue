@@ -28,8 +28,8 @@
         <label for="decheterie">Décheteries</label>
       </li>
     </ul>
-    <!-- <input type="checkbox" id="defibrillateur" value="defibrillateur" v-model="defibrillateurShow">
-    <label for="defibrillateur">Défibrillateur</label> -->
+    <input type="checkbox" id="defibrillateur" value="defibrillateur" v-model="defibrillateurShow">
+    <label for="defibrillateur">Défibrillateur</label>
 
     <LMap
       style="height: 80%; width: 100%"
@@ -40,12 +40,32 @@
       @update:bounds="boundsUpdated"
     >
       <LTileLayer :url="url"></LTileLayer>
-      <LMarker v-if="gonfleurShow === true" id="gonfleur" v-for="record in gonfleur" :show='false' :key="record.recordid" :lat-lng="[record.geometry.coordinates[1], record.geometry.coordinates[0]]"></LMarker>
-      <LMarker v-if="toiletteShow === true" id="toilette" v-for="record in toilette" :show='false' :key="record.recordid" :lat-lng="[record.geometry.coordinates[1], record.geometry.coordinates[0]]"></LMarker>
-      <LMarker v-if="composteShow === true" id="composte" v-for="record in composte" :show='false' :key="record.recordid" :lat-lng="[record.geometry.coordinates[1], record.geometry.coordinates[0]]"></LMarker>
-      <LMarker v-if="abrisShow === true" id="abris" v-for="record in abris" :show='false' :key="record.recordid" :lat-lng="[record.geometry.coordinates[1], record.geometry.coordinates[0]]"></LMarker>
+      <LMarker v-if="gonfleurShow === true" id="gonfleur" v-for="record in gonfleur" :show='false' :key="record.recordid" :lat-lng="[record.geometry.coordinates[1], record.geometry.coordinates[0]]">
+        <l-icon :icon-anchor="staticAnchor" :icon-size="iconSize">
+          <img src="../../public/Assets/GonfleurVeloOK.png">
+        </l-icon>
+      </LMarker>
+      <LMarker v-if="toiletteShow === true" id="toilette" v-for="record in toilette" :show='false' :key="record.recordid" :lat-lng="[record.geometry.coordinates[1], record.geometry.coordinates[0]]">
+        <l-icon :icon-anchor="staticAnchor">
+          <img src="../../public/Assets/wcPublicOK.png">
+        </l-icon>
+      </LMarker>
+      <LMarker v-if="composteShow === true" id="composte" v-for="record in composte" :show='false' :key="record.recordid" :lat-lng="[record.geometry.coordinates[1], record.geometry.coordinates[0]]">
+        <l-icon :icon-anchor="staticAnchor">
+          <img src="../../public/Assets/ComposteursOK.png">
+        </l-icon>
+      </LMarker>
+      <LMarker v-if="abrisShow === true" id="abris" v-for="record in abris" :show='false' :key="record.recordid" :lat-lng="[record.geometry.coordinates[1], record.geometry.coordinates[0]]">
+        <l-icon :icon-anchor="staticAnchor" >
+          <img src="../../public/Assets/abrisVeloOK.png">
+        </l-icon>
+      </LMarker>
       <LMarker v-if="wifiShow === true" id="wifi" v-for="record in wifi" :show='false' :key="record.recordid" :lat-lng="[record.geometry.coordinates[1], record.geometry.coordinates[0]]"></LMarker>
-      <LMarker v-if="decheteriesShow === true" id="decheterie" v-for="record in decheteries" :show='false' :key="record.recordid" :lat-lng="[record.geometry.coordinates[1], record.geometry.coordinates[0]]"></LMarker>
+      <LMarker v-if="decheteriesShow === true" id="decheterie" v-for="record in decheteries" :show='false' :key="record.recordid" :lat-lng="[record.geometry.coordinates[1], record.geometry.coordinates[0]]">
+        <l-icon :icon-anchor="staticAnchor">
+          <img src="../../public/Assets/recyclerieOK.png">
+        </l-icon>
+      </LMarker>
       <LMarker v-for="record in defibrillateur" v-if="record.geometry !== undefined && defibrillateurShow === true" id="defibrillateur"  :show='false' :key="record.recordid" :lat-lng="[record.geometry.coordinates[1], record.geometry.coordinates[0]]"></LMarker>
     </LMap>
   </div>
@@ -93,6 +113,15 @@ export default {
       composteShow: false,
       toiletteShow: false,
       gonfleurShow: false,
+
+      // icon: icon({
+      //   iconUrl: "./GonfleurVelo.png",
+      //   iconSize: [32, 37],
+      //   iconAnchor: [16, 37]
+      // }),
+      staticAnchor: [16, 37],
+      iconSize: [32, 37],
+      iconSize: 20
     };
   },
   beforeCreate() {
@@ -128,7 +157,7 @@ export default {
       return [this.iconSize, this.iconSize * 1.15];
     },
     dynamicAnchor() {
-      return [this.iconSize / 2, this.iconSize * 1.15];
+      return [this.iconSize / 2, this.iconSize * 0.5];
     }
   },
 
@@ -168,6 +197,5 @@ export default {
 input{
   margin-right: 5px;
 }
-
 
 </style>
