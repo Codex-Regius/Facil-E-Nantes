@@ -44,7 +44,7 @@
       @update:bounds="boundsUpdated"
     >
       <LTileLayer :url="url"></LTileLayer>
-      <LMarker v-if="gonfleurShow === true" id="gonfleur" v-for="record in gonfleur" :show='false' :key="record.recordid" :lat-lng="[record.geometry.coordinates[1], record.geometry.coordinates[0]]"></LMarker>
+      <LMarker v-if="gonfleurShow === true"  id="gonfleur" v-for="record in gonfleur" :show='false' :key="record.recordid" :lat-lng="[record.geometry.coordinates[1], record.geometry.coordinates[0]]"></LMarker>
       <LMarker v-if="toiletteShow === true" id="toilette" v-for="record in toilette" :show='false' :key="record.recordid" :lat-lng="[record.geometry.coordinates[1], record.geometry.coordinates[0]]"></LMarker>
       <LMarker v-if="composteShow === true" id="composte" v-for="record in composte" :show='false' :key="record.recordid" :lat-lng="[record.geometry.coordinates[1], record.geometry.coordinates[0]]"></LMarker>
       <LMarker v-if="abrisShow === true" id="abris" v-for="record in abris" :show='false' :key="record.recordid" :lat-lng="[record.geometry.coordinates[1], record.geometry.coordinates[0]]"></LMarker>
@@ -89,7 +89,6 @@ export default {
         "https://api.mapbox.com/styles/v1/mapbox/streets-v11/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibGlyYXVkLWNvZWwiLCJhIjoiY2szem5od2Z4MGFrOTNnbW1ka3MwZWVlMSJ9.qKdr77MJ0XXL-t6Ii6yH8A",
       zoom: 13,
       center: [47.213039, -1.549931],
-      markerLatLng: [47.216303, -1.550231],
       toilette: [],
       gonfleur: [],
       composte: [],
