@@ -1,5 +1,50 @@
 <template>
   <div style="height: 500px; width: 100%">
+    <ul>
+      <li>
+        <input type="checkbox" id="centreville" @click="addPolygon(0)">
+        <label for="centreville">Centre ville</label>
+      </li>
+      <li>
+        <input type="checkbox" id="iledenantes" @click="addPolygon2(1)">
+        <label for="iledenantes">Ile de nantes</label>
+      </li>
+      <li>
+        <input type="checkbox" id="malakoff" @click="addPolygon3(2)">
+        <label for="malakoff">Malakoff Saint-Donatien</label>
+      </li>
+      <li>
+        <input type="checkbox" id="doulon-bottiere" @click="addPolygon4(3)">
+        <label for="doulon-bottiere">Doulon-Bottière</label>
+      </li><li>
+        <input type="checkbox" id="hautPave-saintFelix" @click="addPolygon5(4)">
+        <label for="hautPave-saintFelix">Haut Pavé - Saint Felix</label>
+      </li>
+      <li>
+        <input type="checkbox" id="breil-barberie" @click="addPolygon6(5)">
+        <label for="breil-barberie">Breil barberie</label>
+      </li>
+      <li>
+        <input type="checkbox" id="dervalliere-zola" @click="addPolygon7(6)">
+        <label for="dervalliere-zola">Dervallières - Zola</label>
+      </li>
+      <li>
+        <input type="checkbox" id="chantenay-bellevue-sainteAnne" @click="addPolygon8(7)">
+        <label for="chantenay-bellevue-sainteAnne">Chantenay - Bellevue - Sainte Anne</label>
+      </li>
+      <li>
+        <input type="checkbox" id="nantesNord" @click="addPolygon9(8)">
+        <label for="nantesNord">Nantes Nord</label>
+      </li>
+      <li>
+        <input type="checkbox" id="nantesErdre" @click="addPolygon10(9)">
+        <label for="nantesErdre">Nantes Erdre</label>
+      </li>
+      <li>
+        <input type="checkbox" id="nantesSud" @click="addPolygon11(10)">
+        <label for="nantesSud">Nantes Sud</label>
+      </li>
+    </ul>
     <ul class="firstInput">
       <li>
         <input type="checkbox" id="toilette" value="toilette" v-model="toiletteShow"/>
@@ -26,10 +71,6 @@
       <li>
         <input type="checkbox" id="decheterie" value="decheterie" v-model="decheteriesShow">
         <label for="decheterie">Décheteries</label>
-      </li>
-      <li>
-        <input type="checkbox" id="centreville" v-on:click="addPolygon(0)">
-        <label for="centreville">Centre ville</label>
       </li>
     </ul>
     <div id=defibrillateurButton>
@@ -75,6 +116,66 @@
       <LMarker v-for="record in defibrillateur" v-if="record.geometry !== undefined && defibrillateurShow === true" id="defibrillateur"  :show='false' :key="record.recordid" :lat-lng="[record.geometry.coordinates[1], record.geometry.coordinates[0]]"></LMarker>
       <LPolygon
         v-for="(polygo, index) in checkedPolygons"
+        :key="index"
+        :lat-lngs="polygo.coords"
+        :color="polygo.color"
+      ></LPolygon>
+      <LPolygon
+        v-for="(polygo, index) in checkedPolygons2"
+        :key="index"
+        :lat-lngs="polygo.coords"
+        :color="polygo.color"
+      ></LPolygon>
+      <LPolygon
+        v-for="(polygo, index) in checkedPolygons3"
+        :key="index"
+        :lat-lngs="polygo.coords"
+        :color="polygo.color"
+      ></LPolygon>
+      <LPolygon
+        v-for="(polygo, index) in checkedPolygons4"
+        :key="index"
+        :lat-lngs="polygo.coords"
+        :color="polygo.color"
+      ></LPolygon>
+      <LPolygon
+        v-for="(polygo, index) in checkedPolygons5"
+        :key="index"
+        :lat-lngs="polygo.coords"
+        :color="polygo.color"
+      ></LPolygon>
+      <LPolygon
+        v-for="(polygo, index) in checkedPolygons6"
+        :key="index"
+        :lat-lngs="polygo.coords"
+        :color="polygo.color"
+      ></LPolygon>
+      <LPolygon
+        v-for="(polygo, index) in checkedPolygons7"
+        :key="index"
+        :lat-lngs="polygo.coords"
+        :color="polygo.color"
+      ></LPolygon>
+      <LPolygon
+        v-for="(polygo, index) in checkedPolygons8"
+        :key="index"
+        :lat-lngs="polygo.coords"
+        :color="polygo.color"
+      ></LPolygon>
+      <LPolygon
+        v-for="(polygo, index) in checkedPolygons9"
+        :key="index"
+        :lat-lngs="polygo.coords"
+        :color="polygo.color"
+      ></LPolygon>
+      <LPolygon
+        v-for="(polygo, index) in checkedPolygons10"
+        :key="index"
+        :lat-lngs="polygo.coords"
+        :color="polygo.color"
+      ></LPolygon>
+      <LPolygon
+        v-for="(polygo, index) in checkedPolygons11"
         :key="index"
         :lat-lngs="polygo.coords"
         :color="polygo.color"
@@ -129,6 +230,16 @@ export default {
       iconSize: [32, 37],
       iconSize: 20,
       checkedPolygons: [],
+      checkedPolygons2: [],
+      checkedPolygons3: [],
+      checkedPolygons4: [],
+      checkedPolygons5: [],
+      checkedPolygons6: [],
+      checkedPolygons7: [],
+      checkedPolygons8: [],
+      checkedPolygons9: [],
+      checkedPolygons10: [],
+      checkedPolygons11: [],
       polygon: [
         {
           name: "Centre Ville",
@@ -487,15 +598,131 @@ export default {
         if (this.polygon[index].name !== this.checkedPolygons[index].name) {
           console.log(this.polygon[index].name, this.checkedPolygons[index].name);
         } else {
-          console.log('2');
+          console.log('1');
           this.checkedPolygons.splice(index, 1);
         }
       } else {
         this.checkedPolygons.push(this.polygon[index]);
       }
-    }
+    },
+    addPolygon2(index) {
+      if (this.checkedPolygons2.length > 0) {
+        console.log(this.checkedPolygons2)
+        console.log(this.checkedPolygons2[index].name)
+        console.log(this.polygon[index].name)
+        if (this.polygon[index].name !== this.checkedPolygons2[index].name) {
+          console.log(this.polygon[index].name, this.checkedPolygons2[index].name);
+        } else {
+          console.log('2');
+          this.checkedPolygons2.splice(0, 2);
+        }
+      } else {
+        console.log(this.checkedPolygons2.push(this.polygon[index]))
+        this.checkedPolygons2.push(this.polygon[index]);
+        console.log(this.checkedPolygons2)
+      }
+    },
+    addPolygon3(index) {
+      if (this.checkedPolygons3.length > 0) {
+        if (this.polygon[index].name !== this.checkedPolygons3[0].name) {
+          console.log(this.polygon[index].name, this.checkedPolygons3[0].name);
+        } else {
+          this.checkedPolygons3.splice(0, 2);
+        }
+      } else {
+        this.checkedPolygons3.push(this.polygon[index]);
+      }
+    },
+    addPolygon4(index) {
+      if (this.checkedPolygons4.length > 0) {
+        if (this.polygon[index].name !== this.checkedPolygons4[0].name) {
+          console.log(this.polygon[index].name, this.checkedPolygons4[0].name);
+        } else {
+          this.checkedPolygons4.splice(0, 2);
+        }
+      } else {
+        this.checkedPolygons4.push(this.polygon[index]);
+      }
+    },
+    addPolygon5(index) {
+      if (this.checkedPolygons5.length > 0) {
+        if (this.polygon[index].name !== this.checkedPolygons5[0].name) {
+          console.log(this.polygon[index].name, this.checkedPolygons5[0].name);
+        } else {
+          this.checkedPolygons5.splice(0, 2);
+        }
+      } else {
+        this.checkedPolygons5.push(this.polygon[index]);
+        console.log(this.checkedPolygons5)
+      }
+    },
+    addPolygon6(index) {
+      if (this.checkedPolygons6.length > 0) {
+        if (this.polygon[index].name !== this.checkedPolygons6[0].name) {
+          console.log(this.polygon[index].name, this.checkedPolygons6[0].name);
+        } else {
+          this.checkedPolygons6.splice(0, 2);
+        }
+      } else {
+        this.checkedPolygons6.push(this.polygon[index]);
+      }
+    },
+    addPolygon7(index) {
+      if (this.checkedPolygons7.length > 0) {
+        if (this.polygon[index].name !== this.checkedPolygons7[0].name) {
+          console.log(this.polygon[index].name, this.checkedPolygons7[0].name);
+        } else {
+          this.checkedPolygons7.splice(0, 2);
+        }
+      } else {
+        this.checkedPolygons7.push(this.polygon[index]);
+      }
+    },
+    addPolygon8(index) {
+      if (this.checkedPolygons8.length > 0) {
+        if (this.polygon[index].name !== this.checkedPolygons8[0].name) {
+          console.log(this.polygon[index].name, this.checkedPolygons8[0].name);
+        } else {
+          this.checkedPolygons8.splice(0, 2);
+        }
+      } else {
+        this.checkedPolygons8.push(this.polygon[index]);
+      }
+    },
+    addPolygon9(index) {
+      if (this.checkedPolygons9.length > 0) {
+        if (this.polygon[index].name !== this.checkedPolygons9[0].name) {
+          console.log(this.polygon[index].name, this.checkedPolygons9[0].name);
+        } else {
+          this.checkedPolygons9.splice(0, 2);
+        }
+      } else {
+        this.checkedPolygons9.push(this.polygon[index]);
+      }
+    },
+    addPolygon10(index) {
+      if (this.checkedPolygons10.length > 0) {
+        if (this.polygon[index].name !== this.checkedPolygons10[0].name) {
+          console.log(this.polygon[index].name, this.checkedPolygons10[0].name);
+        } else {
+          this.checkedPolygons10.splice(0, 2);
+        }
+      } else {
+        this.checkedPolygons10.push(this.polygon[index]);
+      }
+    },
+    addPolygon11(index) {
+      if (this.checkedPolygons11.length > 0) {
+        if (this.polygon[index].name !== this.checkedPolygons11[0].name) {
+          console.log(this.polygon[index].name, this.checkedPolygons11[0].name);
+        } else {
+          this.checkedPolygons11.splice(0, 2);
+        }
+      } else {
+        this.checkedPolygons11.push(this.polygon[index]);
+      }
+    },
   },
-
     computed: {
     dynamicSize() {
       return [this.iconSize, this.iconSize * 1.15];
@@ -504,6 +731,7 @@ export default {
       return [this.iconSize / 2, this.iconSize * 0.5];
     }
   },
+  
 
   name: "Map",
   components: {
@@ -514,6 +742,7 @@ export default {
     LPolygon
   }
 };
+
 </script>
 
 
