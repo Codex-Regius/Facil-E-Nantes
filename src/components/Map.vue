@@ -108,7 +108,11 @@
       @update:bounds="boundsUpdated"
     >
       <LTileLayer :url="url"></LTileLayer>
-      <LMarker :lat-lng="[yourLatitude, yourLongitude]"></LMarker>
+      <LMarker :lat-lng="[yourLatitude, yourLongitude]">
+        <l-icon :icon-anchor="staticAnchor" :icon-size="iconSize">
+          <img class="youHere" src="../../public/Assets/geolocalisation.png" />
+        </l-icon>
+      </LMarker>
       <LMarker
         v-if="gonfleurShow === true"
         id="gonfleur"
@@ -449,5 +453,9 @@ input {
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
+}
+
+.youHere {
+  height: 100%;
 }
 </style>
