@@ -2,46 +2,46 @@
   <div style="height: 500px; width: 100%">
     <ul>
       <li>
-        <input type="checkbox" id="centreville" @click="addPolygon(0)">
+        <input type="checkbox" id="centreville" @click="showPolygon(0)">
         <label for="centreville">Centre ville</label>
       </li>
       <li>
-        <input type="checkbox" id="iledenantes" @click="addPolygon2(1)">
+        <input type="checkbox" id="iledenantes" @click="showPolygon(1)">
         <label for="iledenantes">Ile de nantes</label>
       </li>
       <li>
-        <input type="checkbox" id="malakoff" @click="addPolygon3(2)">
+        <input type="checkbox" id="malakoff" @click="showPolygon(2)">
         <label for="malakoff">Malakoff Saint-Donatien</label>
       </li>
       <li>
-        <input type="checkbox" id="doulon-bottiere" @click="addPolygon4(3)">
+        <input type="checkbox" id="doulon-bottiere" @click="showPolygon(3)">
         <label for="doulon-bottiere">Doulon-Bottière</label>
       </li><li>
-        <input type="checkbox" id="hautPave-saintFelix" @click="addPolygon5(4)">
+        <input type="checkbox" id="hautPave-saintFelix" @click="showPolygon(4)">
         <label for="hautPave-saintFelix">Haut Pavé - Saint Felix</label>
       </li>
       <li>
-        <input type="checkbox" id="breil-barberie" @click="addPolygon6(5)">
+        <input type="checkbox" id="breil-barberie" @click="showPolygon(5)">
         <label for="breil-barberie">Breil barberie</label>
       </li>
       <li>
-        <input type="checkbox" id="dervalliere-zola" @click="addPolygon7(6)">
+        <input type="checkbox" id="dervalliere-zola" @click="showPolygon(6)">
         <label for="dervalliere-zola">Dervallières - Zola</label>
       </li>
       <li>
-        <input type="checkbox" id="chantenay-bellevue-sainteAnne" @click="addPolygon8(7)">
+        <input type="checkbox" id="chantenay-bellevue-sainteAnne" @click="showPolygon(7)">
         <label for="chantenay-bellevue-sainteAnne">Chantenay - Bellevue - Sainte Anne</label>
       </li>
       <li>
-        <input type="checkbox" id="nantesNord" @click="addPolygon9(8)">
+        <input type="checkbox" id="nantesNord" @click="showPolygon(8)">
         <label for="nantesNord">Nantes Nord</label>
       </li>
       <li>
-        <input type="checkbox" id="nantesErdre" @click="addPolygon10(9)">
+        <input type="checkbox" id="nantesErdre" @click="showPolygon(9)">
         <label for="nantesErdre">Nantes Erdre</label>
       </li>
       <li>
-        <input type="checkbox" id="nantesSud" @click="addPolygon11(10)">
+        <input type="checkbox" id="nantesSud" @click="showPolygon(10)">
         <label for="nantesSud">Nantes Sud</label>
       </li>
     </ul>
@@ -113,67 +113,8 @@
       </LMarker>
       <LMarker v-for="record in defibrillateur" v-if="record.geometry !== undefined && defibrillateurShow === true" id="defibrillateur"  :show='false' :key="record.recordid" :lat-lng="[record.geometry.coordinates[1], record.geometry.coordinates[0]]"></LMarker>
       <LPolygon
-        v-for="(polygo, index) in checkedPolygons"
-        :key="index"
-        :lat-lngs="polygo.coords"
-        :color="polygo.color"
-      ></LPolygon>
-      <LPolygon
-        v-for="(polygo, index) in checkedPolygons2"
-        :key="index"
-        :lat-lngs="polygo.coords"
-        :color="polygo.color"
-      ></LPolygon>
-      <LPolygon
-        v-for="(polygo, index) in checkedPolygons3"
-        :key="index"
-        :lat-lngs="polygo.coords"
-        :color="polygo.color"
-      ></LPolygon>
-      <LPolygon
-        v-for="(polygo, index) in checkedPolygons4"
-        :key="index"
-        :lat-lngs="polygo.coords"
-        :color="polygo.color"
-      ></LPolygon>
-      <LPolygon
-        v-for="(polygo, index) in checkedPolygons5"
-        :key="index"
-        :lat-lngs="polygo.coords"
-        :color="polygo.color"
-      ></LPolygon>
-      <LPolygon
-        v-for="(polygo, index) in checkedPolygons6"
-        :key="index"
-        :lat-lngs="polygo.coords"
-        :color="polygo.color"
-      ></LPolygon>
-      <LPolygon
-        v-for="(polygo, index) in checkedPolygons7"
-        :key="index"
-        :lat-lngs="polygo.coords"
-        :color="polygo.color"
-      ></LPolygon>
-      <LPolygon
-        v-for="(polygo, index) in checkedPolygons8"
-        :key="index"
-        :lat-lngs="polygo.coords"
-        :color="polygo.color"
-      ></LPolygon>
-      <LPolygon
-        v-for="(polygo, index) in checkedPolygons9"
-        :key="index"
-        :lat-lngs="polygo.coords"
-        :color="polygo.color"
-      ></LPolygon>
-      <LPolygon
-        v-for="(polygo, index) in checkedPolygons10"
-        :key="index"
-        :lat-lngs="polygo.coords"
-        :color="polygo.color"
-      ></LPolygon>
-      <LPolygon
-        v-for="(polygo, index) in checkedPolygons11"
+        v-for="(polygo, index) in polygons"
+        v-if="polygo.show === true"
         :key="index"
         :lat-lngs="polygo.coords"
         :color="polygo.color"
@@ -227,18 +168,7 @@ export default {
       staticAnchor: [16, 37],
       iconSize: [32, 37],
       iconSize: 20,
-      checkedPolygons: [],
-      checkedPolygons2: [],
-      checkedPolygons3: [],
-      checkedPolygons4: [],
-      checkedPolygons5: [],
-      checkedPolygons6: [],
-      checkedPolygons7: [],
-      checkedPolygons8: [],
-      checkedPolygons9: [],
-      checkedPolygons10: [],
-      checkedPolygons11: [],
-      polygon: [
+      polygons: [
         {
           name: "Centre Ville",
           coords: [
@@ -268,7 +198,8 @@ export default {
             [47.209712, -1.570547],
             [47.214347, -1.572178]
           ],
-          color: "lightGreen"
+          color: "lightGreen",
+          show: false
         },
         {
           name: "île de Nantes",
@@ -284,7 +215,8 @@ export default {
             [47.200032, -1.543596],
             [47.199186, -1.574281]
           ],
-          color: "orchid"
+          color: "orchid",
+          show: false
         },
         {
           name: "Malakoff Saint-Donatien",
@@ -304,7 +236,8 @@ export default {
             [47.231915, -1.5483],
             [47.235307, -1.548684]
           ],
-          color: "steelBlue"
+          color: "steelBlue",
+          show: false
         },
         {
           name: "Doulon-Bottière",
@@ -328,7 +261,8 @@ export default {
             [47.233307, -1.533141],
             [47.23389, -1.535887]
           ],
-          color: "tomato"
+          color: "tomato",
+          show: false
         },
         {
           name: "Haut-Pavés-Saint-Felix",
@@ -366,7 +300,8 @@ export default {
             [47.243567, -1.548737],
             [47.24262, -1.546484]
           ],
-          color: "yellow"
+          color: "yellow",
+          show: false
         },
         {
           name: "Breil Barberie",
@@ -401,7 +336,8 @@ export default {
             [47.238467, -1.587835],
             [47.239286, -1.589386]
           ],
-          color: "orange"
+          color: "orange",
+          show: false
         },
         {
           name: "Dervallières-Zola",
@@ -434,7 +370,8 @@ export default {
             [47.215359, -1.605707],
             [47.224512, -1.603175]
           ],
-          color: "cyan"
+          color: "cyan",
+          show: false
         },
         {
           name: "Chantenay-Bellevue-Sainte-Anne",
@@ -467,7 +404,8 @@ export default {
             [47.204307, -1.618284],
             [47.204161, -1.615473]
           ],
-          color: "salmon"
+          color: "salmon",
+          show: false
         },
         {
           name: "Nantes-Nord",
@@ -508,7 +446,8 @@ export default {
             [47.246533, -1.575481],
             [47.247262, -1.57737],
             [47.253721, -1.576372]
-          ]
+          ],
+          show: false
         },
         {
           name: "Nantes Erdre",
@@ -532,7 +471,8 @@ export default {
             [47.26878, -1.536151],
             [47.279961, -1.526023]
           ],
-          color: "lightCyan"
+          color: "lightCyan",
+          show: false
         },
         {
           name: "Nantes Sud",
@@ -560,7 +500,8 @@ export default {
             [47.196921, -1.548869],
             [47.197154, -1.549555]
           ],
-          color: "Turquoise"
+          color: "Turquoise",
+          show: false
         }
       ]
     };
@@ -591,135 +532,9 @@ export default {
     boundsUpdated(bounds) {
       this.bounds = bounds;
     },
-    addPolygon(index) {
-      if (this.checkedPolygons.length > 0) {
-        if (this.polygon[index].name !== this.checkedPolygons[index].name) {
-          console.log(this.polygon[index].name, this.checkedPolygons[index].name);
-        } else {
-          console.log('1');
-          this.checkedPolygons.splice(index, 1);
-        }
-      } else {
-        this.checkedPolygons.push(this.polygon[index]);
-      }
-    },
-    addPolygon2(index) {
-      if (this.checkedPolygons2.length > 0) {
-        console.log(this.checkedPolygons2)
-        console.log(this.checkedPolygons2[index].name)
-        console.log(this.polygon[index].name)
-        if (this.polygon[index].name !== this.checkedPolygons2[index].name) {
-          console.log(this.polygon[index].name, this.checkedPolygons2[index].name);
-        } else {
-          console.log('2');
-          this.checkedPolygons2.splice(0, 2);
-        }
-      } else {
-        console.log(this.checkedPolygons2.push(this.polygon[index]))
-        this.checkedPolygons2.push(this.polygon[index]);
-        console.log(this.checkedPolygons2)
-      }
-    },
-    addPolygon3(index) {
-      if (this.checkedPolygons3.length > 0) {
-        if (this.polygon[index].name !== this.checkedPolygons3[0].name) {
-          console.log(this.polygon[index].name, this.checkedPolygons3[0].name);
-        } else {
-          this.checkedPolygons3.splice(0, 2);
-        }
-      } else {
-        this.checkedPolygons3.push(this.polygon[index]);
-      }
-    },
-    addPolygon4(index) {
-      if (this.checkedPolygons4.length > 0) {
-        if (this.polygon[index].name !== this.checkedPolygons4[0].name) {
-          console.log(this.polygon[index].name, this.checkedPolygons4[0].name);
-        } else {
-          this.checkedPolygons4.splice(0, 2);
-        }
-      } else {
-        this.checkedPolygons4.push(this.polygon[index]);
-      }
-    },
-    addPolygon5(index) {
-      if (this.checkedPolygons5.length > 0) {
-        if (this.polygon[index].name !== this.checkedPolygons5[0].name) {
-          console.log(this.polygon[index].name, this.checkedPolygons5[0].name);
-        } else {
-          this.checkedPolygons5.splice(0, 2);
-        }
-      } else {
-        this.checkedPolygons5.push(this.polygon[index]);
-        console.log(this.checkedPolygons5)
-      }
-    },
-    addPolygon6(index) {
-      if (this.checkedPolygons6.length > 0) {
-        if (this.polygon[index].name !== this.checkedPolygons6[0].name) {
-          console.log(this.polygon[index].name, this.checkedPolygons6[0].name);
-        } else {
-          this.checkedPolygons6.splice(0, 2);
-        }
-      } else {
-        this.checkedPolygons6.push(this.polygon[index]);
-      }
-    },
-    addPolygon7(index) {
-      if (this.checkedPolygons7.length > 0) {
-        if (this.polygon[index].name !== this.checkedPolygons7[0].name) {
-          console.log(this.polygon[index].name, this.checkedPolygons7[0].name);
-        } else {
-          this.checkedPolygons7.splice(0, 2);
-        }
-      } else {
-        this.checkedPolygons7.push(this.polygon[index]);
-      }
-    },
-    addPolygon8(index) {
-      if (this.checkedPolygons8.length > 0) {
-        if (this.polygon[index].name !== this.checkedPolygons8[0].name) {
-          console.log(this.polygon[index].name, this.checkedPolygons8[0].name);
-        } else {
-          this.checkedPolygons8.splice(0, 2);
-        }
-      } else {
-        this.checkedPolygons8.push(this.polygon[index]);
-      }
-    },
-    addPolygon9(index) {
-      if (this.checkedPolygons9.length > 0) {
-        if (this.polygon[index].name !== this.checkedPolygons9[0].name) {
-          console.log(this.polygon[index].name, this.checkedPolygons9[0].name);
-        } else {
-          this.checkedPolygons9.splice(0, 2);
-        }
-      } else {
-        this.checkedPolygons9.push(this.polygon[index]);
-      }
-    },
-    addPolygon10(index) {
-      if (this.checkedPolygons10.length > 0) {
-        if (this.polygon[index].name !== this.checkedPolygons10[0].name) {
-          console.log(this.polygon[index].name, this.checkedPolygons10[0].name);
-        } else {
-          this.checkedPolygons10.splice(0, 2);
-        }
-      } else {
-        this.checkedPolygons10.push(this.polygon[index]);
-      }
-    },
-    addPolygon11(index) {
-      if (this.checkedPolygons11.length > 0) {
-        if (this.polygon[index].name !== this.checkedPolygons11[0].name) {
-          console.log(this.polygon[index].name, this.checkedPolygons11[0].name);
-        } else {
-          this.checkedPolygons11.splice(0, 2);
-        }
-      } else {
-        this.checkedPolygons11.push(this.polygon[index]);
-      }
-    },
+    showPolygon(index) {
+      this.polygons[index].show = !this.polygons[index].show;
+    }
   },
     computed: {
     dynamicSize() {
