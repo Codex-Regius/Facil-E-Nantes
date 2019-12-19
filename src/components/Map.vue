@@ -108,6 +108,7 @@
       @update:bounds="boundsUpdated"
     >
       <LTileLayer :url="url"></LTileLayer>
+      <LMarker :lat-lng="[yourLatitude, yourLongitude]"></LMarker>
       <LMarker
         v-if="gonfleurShow === true"
         id="gonfleur"
@@ -253,12 +254,15 @@ export default {
       iconSize: [32, 37],
       iconSize: 20,
       checkedQuartiers: [],
-      polygons: []
+      polygons: [],
+      yourLatitude: 0,
+      yourLongitude: 0
     };
   },
   beforeCreate() {
     navigator.geolocation.getCurrentPosition(position => {
-      console.log(position);
+      this.yourLatitude = position.coords.latitude;
+      this.yourLongitude = position.coords.longitude;
     });
     axios
       .get(
