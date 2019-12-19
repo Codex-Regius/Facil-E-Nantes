@@ -2,78 +2,79 @@
   <div style="height: 500px; width: 100%">
     <ul>
       <li>
-        <input type="checkbox" id="centreville" @click="showPolygon(0)">
+        <input type="checkbox" id="centreville" @click="showPolygon(0)" />
         <label for="centreville">Centre ville</label>
       </li>
       <li>
-        <input type="checkbox" id="iledenantes" @click="showPolygon(1)">
+        <input type="checkbox" id="iledenantes" @click="showPolygon(1)" />
         <label for="iledenantes">Ile de nantes</label>
       </li>
       <li>
-        <input type="checkbox" id="malakoff" @click="showPolygon(2)">
+        <input type="checkbox" id="malakoff" @click="showPolygon(2)" />
         <label for="malakoff">Malakoff Saint-Donatien</label>
       </li>
       <li>
-        <input type="checkbox" id="doulon-bottiere" @click="showPolygon(3)">
+        <input type="checkbox" id="doulon-bottiere" @click="showPolygon(3)" />
         <label for="doulon-bottiere">Doulon-Bottière</label>
-      </li><li>
-        <input type="checkbox" id="hautPave-saintFelix" @click="showPolygon(4)">
+      </li>
+      <li>
+        <input type="checkbox" id="hautPave-saintFelix" @click="showPolygon(4)" />
         <label for="hautPave-saintFelix">Haut Pavé - Saint Felix</label>
       </li>
       <li>
-        <input type="checkbox" id="breil-barberie" @click="showPolygon(5)">
+        <input type="checkbox" id="breil-barberie" @click="showPolygon(5)" />
         <label for="breil-barberie">Breil barberie</label>
       </li>
       <li>
-        <input type="checkbox" id="dervalliere-zola" @click="showPolygon(6)">
+        <input type="checkbox" id="dervalliere-zola" @click="showPolygon(6)" />
         <label for="dervalliere-zola">Dervallières - Zola</label>
       </li>
       <li>
-        <input type="checkbox" id="chantenay-bellevue-sainteAnne" @click="showPolygon(7)">
+        <input type="checkbox" id="chantenay-bellevue-sainteAnne" @click="showPolygon(7)" />
         <label for="chantenay-bellevue-sainteAnne">Chantenay - Bellevue - Sainte Anne</label>
       </li>
       <li>
-        <input type="checkbox" id="nantesNord" @click="showPolygon(8)">
+        <input type="checkbox" id="nantesNord" @click="showPolygon(8)" />
         <label for="nantesNord">Nantes Nord</label>
       </li>
       <li>
-        <input type="checkbox" id="nantesErdre" @click="showPolygon(9)">
+        <input type="checkbox" id="nantesErdre" @click="showPolygon(9)" />
         <label for="nantesErdre">Nantes Erdre</label>
       </li>
       <li>
-        <input type="checkbox" id="nantesSud" @click="showPolygon(10)">
+        <input type="checkbox" id="nantesSud" @click="showPolygon(10)" />
         <label for="nantesSud">Nantes Sud</label>
       </li>
     </ul>
     <ul class="firstInput">
       <li>
-        <input type="checkbox" id="toilette" value="toilette" v-model="toiletteShow"/>
+        <input type="checkbox" id="toilette" value="toilette" v-model="toiletteShow" />
         <label for="toilette">Toilettes Public</label>
       </li>
       <li>
-        <input type="checkbox" id="Gonfleur" value="Gonfleur" v-model="gonfleurShow">
+        <input type="checkbox" id="Gonfleur" value="Gonfleur" v-model="gonfleurShow" />
         <label for="Gonfleur">Gonfleur à velo en libre service</label>
       </li>
       <li>
-        <input type="checkbox" id="Abris-vélo" value="Abris-vélo" v-model="abrisShow">
+        <input type="checkbox" id="Abris-vélo" value="Abris-vélo" v-model="abrisShow" />
         <label for="Abris-vélo">Abris vélo</label>
       </li>
       <li>
-        <input type="checkbox" id="Wifi" value="Wifi" v-model="wifiShow">
+        <input type="checkbox" id="Wifi" value="Wifi" v-model="wifiShow" />
         <label for="Wifi">Wifi Public</label>
       </li>
     </ul>
     <ul class="secondInput">
       <li>
-        <input type="checkbox" id="Composteur" value="Composteur" v-model="composteShow">
+        <input type="checkbox" id="Composteur" value="Composteur" v-model="composteShow" />
         <label for="Composteur">Composteur de quartier</label>
       </li>
       <li>
-        <input type="checkbox" id="decheterie" value="decheterie" v-model="decheteriesShow">
+        <input type="checkbox" id="decheterie" value="decheterie" v-model="decheteriesShow" />
         <label for="decheterie">Décheteries</label>
       </li>
     </ul>
-    <input type="checkbox" id="defibrillateur" value="defibrillateur" v-model="defibrillateurShow">
+    <input type="checkbox" id="defibrillateur" value="defibrillateur" v-model="defibrillateurShow" />
     <label for="defibrillateur">Défibrillateur</label>
 
     <LMap
@@ -85,33 +86,82 @@
       @update:bounds="boundsUpdated"
     >
       <LTileLayer :url="url"></LTileLayer>
-      <LMarker v-if="gonfleurShow === true" id="gonfleur" v-for="record in gonfleur" :show='false' :key="record.recordid" :lat-lng="[record.geometry.coordinates[1], record.geometry.coordinates[0]]">
+      <LMarker
+        v-if="gonfleurShow === true"
+        id="gonfleur"
+        v-for="record in gonfleur"
+        :show="false"
+        :key="record.recordid"
+        :lat-lng="[record.geometry.coordinates[1], record.geometry.coordinates[0]]"
+      >
         <l-icon :icon-anchor="staticAnchor" :icon-size="iconSize">
-          <img src="../../public/Assets/GonfleurVeloOK.png">
+          <img src="../../public/Assets/GonfleurVeloOK.png" />
         </l-icon>
       </LMarker>
-      <LMarker v-if="toiletteShow === true" id="toilette" v-for="record in toilette" :show='false' :key="record.recordid" :lat-lng="[record.geometry.coordinates[1], record.geometry.coordinates[0]]">
+      <LMarker
+        v-if="toiletteShow === true"
+        id="toilette"
+        v-for="record in toilette"
+        :show="false"
+        :key="record.recordid"
+        :lat-lng="[record.geometry.coordinates[1], record.geometry.coordinates[0]]"
+      >
         <l-icon :icon-anchor="staticAnchor">
-          <img src="../../public/Assets/wcPublicOK.png">
+          <img src="../../public/Assets/wcPublicOK.png" />
         </l-icon>
       </LMarker>
-      <LMarker v-if="composteShow === true" id="composte" v-for="record in composte" :show='false' :key="record.recordid" :lat-lng="[record.geometry.coordinates[1], record.geometry.coordinates[0]]">
+      <LMarker
+        v-if="composteShow === true"
+        id="composte"
+        v-for="record in composte"
+        :show="false"
+        :key="record.recordid"
+        :lat-lng="[record.geometry.coordinates[1], record.geometry.coordinates[0]]"
+      >
         <l-icon :icon-anchor="staticAnchor">
-          <img src="../../public/Assets/ComposteursOK.png">
+          <img src="../../public/Assets/ComposteursOK.png" />
         </l-icon>
       </LMarker>
-      <LMarker v-if="abrisShow === true" id="abris" v-for="record in abris" :show='false' :key="record.recordid" :lat-lng="[record.geometry.coordinates[1], record.geometry.coordinates[0]]">
-        <l-icon :icon-anchor="staticAnchor" >
-          <img src="../../public/Assets/abrisVeloOK.png">
-        </l-icon>
-      </LMarker>
-      <LMarker v-if="wifiShow === true" id="wifi" v-for="record in wifi" :show='false' :key="record.recordid" :lat-lng="[record.geometry.coordinates[1], record.geometry.coordinates[0]]"></LMarker>
-      <LMarker v-if="decheteriesShow === true" id="decheterie" v-for="record in decheteries" :show='false' :key="record.recordid" :lat-lng="[record.geometry.coordinates[1], record.geometry.coordinates[0]]">
+      <LMarker
+        v-if="abrisShow === true"
+        id="abris"
+        v-for="record in abris"
+        :show="false"
+        :key="record.recordid"
+        :lat-lng="[record.geometry.coordinates[1], record.geometry.coordinates[0]]"
+      >
         <l-icon :icon-anchor="staticAnchor">
-          <img src="../../public/Assets/recyclerieOK.png">
+          <img src="../../public/Assets/abrisVeloOK.png" />
         </l-icon>
       </LMarker>
-      <LMarker v-for="record in defibrillateur" v-if="record.geometry !== undefined && defibrillateurShow === true" id="defibrillateur"  :show='false' :key="record.recordid" :lat-lng="[record.geometry.coordinates[1], record.geometry.coordinates[0]]"></LMarker>
+      <LMarker
+        v-if="wifiShow === true"
+        id="wifi"
+        v-for="record in wifi"
+        :show="false"
+        :key="record.recordid"
+        :lat-lng="[record.geometry.coordinates[1], record.geometry.coordinates[0]]"
+      ></LMarker>
+      <LMarker
+        v-if="decheteriesShow === true"
+        id="decheterie"
+        v-for="record in decheteries"
+        :show="false"
+        :key="record.recordid"
+        :lat-lng="[record.geometry.coordinates[1], record.geometry.coordinates[0]]"
+      >
+        <l-icon :icon-anchor="staticAnchor">
+          <img src="../../public/Assets/recyclerieOK.png" />
+        </l-icon>
+      </LMarker>
+      <LMarker
+        v-for="record in defibrillateur"
+        v-if="record.geometry !== undefined && defibrillateurShow === true"
+        id="defibrillateur"
+        :show="false"
+        :key="record.recordid"
+        :lat-lng="[record.geometry.coordinates[1], record.geometry.coordinates[0]]"
+      ></LMarker>
       <LPolygon
         v-for="(polygo, index) in polygons"
         v-if="polygo.show === true"
@@ -128,7 +178,7 @@ import { LMap, LTileLayer, LMarker, LIcon, LPolygon } from "vue2-leaflet";
 import { Icon } from "leaflet";
 import Vue from "vue";
 import "leaflet/dist/leaflet.css";
-import axios from 'axios';
+import axios from "axios";
 
 Vue.component("l-map", LMap);
 Vue.component("l-tile-layer", LTileLayer);
@@ -168,6 +218,7 @@ export default {
       staticAnchor: [16, 37],
       iconSize: [32, 37],
       iconSize: 20,
+      records: [],
       polygons: [
         {
           name: "Centre Ville",
@@ -507,20 +558,63 @@ export default {
     };
   },
   beforeCreate() {
-     axios.get('https://data.nantesmetropole.fr/api/records/1.0/search/?dataset=244400404_toilettes-publiques-nantes-metropole&rows=65&facet=commune&facet=pole&facet=type&facet=automatique&facet=acces_pmr&refine.commune=Nantes&exclude.commune=Thouar%C3%A9-sur-Loire&exclude.commune=Carquefou&exclude.commune=Rez%C3%A9&exclude.commune=Le+Pellerin')
-    .then(response => {this.toilette = response.data.records}),
-    axios.get('https://data.nantesmetropole.fr/api/records/1.0/search/?dataset=244400404_gonfleurs-libre-service-nantes-metropole&rows=16&facet=commune&facet=conditions&refine.commune=Nantes')
-    .then(response => {this.gonfleur = response.data.records}),
-    axios.get('https://data.nantesmetropole.fr/api/records/1.0/search/?dataset=512042839_composteurs-quartier-nantes-metropole&rows=191&facet=categorie&facet=lieu&facet=annee&exclude.lieu=Cou%C3%ABron&exclude.lieu=Bouguenais&exclude.lieu=Rez%C3%A9&exclude.lieu=Sautron&exclude.lieu=Le+Pellerin&exclude.lieu=Orvault&exclude.lieu=Saint-Sebastien-sur-Loire&exclude.lieu=La+Choli%C3%A8re')
-    .then(response => {this.composte = response.data.records}),
-    axios.get('https://data.nantesmetropole.fr/api/records/1.0/search/?dataset=244400404_abris-velos-nantes-metropole&rows=83&facet=commune&facet=conditions&facet=gestionnaire&refine.commune=Nantes')
-    .then(response => {this.abris = response.data.records}),
-    axios.get('https://data.nantesmetropole.fr/api/records/1.0/search/?dataset=244400404_wifi-public-nantes-metropole&facet=nom')
-    .then(response => {this.wifi = response.data.records}),
-    axios.get('https://data.nantesmetropole.fr/api/records/1.0/search/?dataset=244400404_decheteries-ecopoints-nantes-metropole&rows=15&facet=libtype&facet=commune&facet=batteries&facet=bois&facet=carton&facet=gravats&facet=deee&facet=encombrants_menagers&facet=ferrailles&facet=huiles_moteur&facet=papiers_journaux_livres&facet=plastiques_menagers&facet=pneus&facet=textiles&facet=dechets_verts&facet=verre&facet=piles&facet=mobilier&facet=cartouches&facet=extincteur&facet=neons_lampes&facet=dechets_dangereux&facet=bouteilles_gaz')
-    .then(response => {this.decheteries = response.data.records}),
-    axios.get('https://data.nantesmetropole.fr/api/records/1.0/search/?dataset=244400404_defibrillateurs-nantes&rows=158&sort=designation&facet=nature_site')
-    .then(response => {this.defibrillateur = response.data.records})
+    axios
+      .get(
+        "https://data.nantesmetropole.fr/api/records/1.0/search/?dataset=244400404_toilettes-publiques-nantes-metropole&rows=65&facet=commune&facet=pole&facet=type&facet=automatique&facet=acces_pmr&refine.commune=Nantes&exclude.commune=Thouar%C3%A9-sur-Loire&exclude.commune=Carquefou&exclude.commune=Rez%C3%A9&exclude.commune=Le+Pellerin"
+      )
+      .then(response => {
+        this.toilette = response.data.records;
+      }),
+      axios
+        .get(
+          "https://data.nantesmetropole.fr/api/records/1.0/search/?dataset=244400404_gonfleurs-libre-service-nantes-metropole&rows=16&facet=commune&facet=conditions&refine.commune=Nantes"
+        )
+        .then(response => {
+          this.gonfleur = response.data.records;
+        }),
+      axios
+        .get(
+          "https://data.nantesmetropole.fr/api/records/1.0/search/?dataset=512042839_composteurs-quartier-nantes-metropole&rows=191&facet=categorie&facet=lieu&facet=annee&exclude.lieu=Cou%C3%ABron&exclude.lieu=Bouguenais&exclude.lieu=Rez%C3%A9&exclude.lieu=Sautron&exclude.lieu=Le+Pellerin&exclude.lieu=Orvault&exclude.lieu=Saint-Sebastien-sur-Loire&exclude.lieu=La+Choli%C3%A8re"
+        )
+        .then(response => {
+          this.composte = response.data.records;
+        }),
+      axios
+        .get(
+          "https://data.nantesmetropole.fr/api/records/1.0/search/?dataset=244400404_abris-velos-nantes-metropole&rows=83&facet=commune&facet=conditions&facet=gestionnaire&refine.commune=Nantes"
+        )
+        .then(response => {
+          this.abris = response.data.records;
+        }),
+      axios
+        .get(
+          "https://data.nantesmetropole.fr/api/records/1.0/search/?dataset=244400404_wifi-public-nantes-metropole&facet=nom"
+        )
+        .then(response => {
+          this.wifi = response.data.records;
+        }),
+      axios
+        .get(
+          "https://data.nantesmetropole.fr/api/records/1.0/search/?dataset=244400404_decheteries-ecopoints-nantes-metropole&rows=15&facet=libtype&facet=commune&facet=batteries&facet=bois&facet=carton&facet=gravats&facet=deee&facet=encombrants_menagers&facet=ferrailles&facet=huiles_moteur&facet=papiers_journaux_livres&facet=plastiques_menagers&facet=pneus&facet=textiles&facet=dechets_verts&facet=verre&facet=piles&facet=mobilier&facet=cartouches&facet=extincteur&facet=neons_lampes&facet=dechets_dangereux&facet=bouteilles_gaz"
+        )
+        .then(response => {
+          this.decheteries = response.data.records;
+        }),
+      axios
+        .get(
+          "https://data.nantesmetropole.fr/api/records/1.0/search/?dataset=244400404_defibrillateurs-nantes&rows=158&sort=designation&facet=nature_site"
+        )
+        .then(response => {
+          this.defibrillateur = response.data.records;
+        }),
+      axios
+        .get(
+          "https://data.nantesmetropole.fr/api/records/1.0/search/?dataset=244400404_quartiers-nantes&rows=11&facet=nom"
+        )
+        .then(response => {
+          this.records = response.data.records;
+          console.log(response.data.records);
+        });
   },
   methods: {
     zoomUpdated(zoom) {
@@ -536,7 +630,7 @@ export default {
       this.polygons[index].show = !this.polygons[index].show;
     }
   },
-    computed: {
+  computed: {
     dynamicSize() {
       return [this.iconSize, this.iconSize * 1.15];
     },
@@ -544,7 +638,6 @@ export default {
       return [this.iconSize / 2, this.iconSize * 0.5];
     }
   },
-  
 
   name: "Map",
   components: {
@@ -555,15 +648,13 @@ export default {
     LPolygon
   }
 };
-
 </script>
 
 
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-
-.firstInput{
+.firstInput {
   align-items: center;
   display: flex;
   list-style: none;
@@ -571,7 +662,7 @@ export default {
   justify-content: space-evenly;
   margin-top: 29px;
 }
-.secondInput{
+.secondInput {
   align-items: center;
   display: flex;
   list-style: none;
@@ -581,8 +672,7 @@ export default {
   margin-bottom: 29px;
 }
 
-input{
+input {
   margin-right: 5px;
 }
-
 </style>
