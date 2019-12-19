@@ -32,8 +32,14 @@
         <label for="centreville">Centre ville</label>
       </li>
     </ul>
-    <input type="checkbox" id="defibrillateur" value="defibrillateur" v-model="defibrillateurShow">
-    <label for="defibrillateur">Défibrillateur</label>
+    <!-- <div id=defibrillateurButton>
+      <input type="checkbox" id="defibrillateur" value="defibrillateur" v-model="defibrillateurShow">
+      <label for="defibrillateur">Défibrillateur</label>
+    </div> -->
+    <div id=defibrillateurButton>
+      <img src="" type="checkbox" id="defibrillateur" value="defibrillateur" v-model="defibrillateurShow">
+      <label for="defibrillateur">Défibrillateur</label>
+    </div>
 
     <LMap
       style="height: 80%; width: 100%"
@@ -539,6 +545,15 @@ export default {
 
 input{
   margin-right: 5px;
+}
+
+#defibrillateurButton{
+  position: absolute;
+  z-index: 999;
+  bottom: 40px;
+  right: 40px;
+  background-color: brown;
+  border-radius: 50px
 }
 
 </style>
