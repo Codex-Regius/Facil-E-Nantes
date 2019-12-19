@@ -169,10 +169,13 @@
         v-if="polygon.show === true"
         :key="index"
         :lat-lngs="polygon.coords"
-        :color="polygon.color"
         :fillColor="polygon.fillColor"
       ></LPolygon>
     </LMap>
+    <div id=defibrillateurButton>
+      <input type="checkbox" id="defibrillateur" value="defibrillateur" v-model="defibrillateurShow">
+      <label for="defibrillateur" id="defibrillateurLabel"><img src="../../public/Assets/defibrillatorWhite.png" /> Défibrillateurs</label>
+    </div>
   </div>
 </template>
 
@@ -286,7 +289,6 @@ export default {
             return {
               coords: reverseArray.map(param => param.reverse()),
               show: false,
-              color: false,
               fillColor: "tomato"
             };
           });
@@ -372,4 +374,53 @@ export default {
 input {
   margin-right: 5px;
 }
+
+#defibrillateurButton{
+position: absolute;
+  z-index: 999;
+  bottom: 0px;
+  right: 128px;
+  background-color: rgb(30, 165, 30);
+  padding: 6%;
+  border-radius: 200px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+#defibrillateurButton img {
+  height: auto;
+  width: 54px;
+}
+
+#defibrillateur{
+  visibility: hidden;
+  display: none;
+}
+
+#defibrillateurLabel{
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  font-size: 11px;
+  font-weight: bold;
+  color: white;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
 </style>
