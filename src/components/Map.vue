@@ -129,6 +129,7 @@ import { Icon } from "leaflet";
 import Vue from "vue";
 import "leaflet/dist/leaflet.css";
 import axios from 'axios';
+import inside from "point-in-polygon";
 
 Vue.component("l-map", LMap);
 Vue.component("l-tile-layer", LTileLayer);
@@ -534,6 +535,9 @@ export default {
     },
     showPolygon(index) {
       this.polygons[index].show = !this.polygons[index].show;
+    },
+    isInPolygon(point) {
+      return inside(point, this.polygons[index].coords);
     }
   },
     computed: {
