@@ -76,8 +76,6 @@
         <label for="decheterie">Décheteries</label>
       </li>
     </ul>
-    <input type="checkbox" id="defibrillateur" value="defibrillateur" v-model="defibrillateurShow" />
-    <label for="defibrillateur">Défibrillateur</label>
 
     <LMap
       style="height: 80%; width: 100%"
@@ -172,8 +170,8 @@
         :fillColor="polygon.fillColor"
       ></LPolygon>
     </LMap>
-    <div id=defibrillateurButton>
-      <input type="checkbox" id="defibrillateur" value="defibrillateur" v-model="defibrillateurShow">
+    <div id="defibrillateurButton">
+      <input type="checkbox" id="defibrillateur" value="defibrillateur" v-model="defibrillateurShow" />
       <label for="defibrillateur" id="defibrillateurLabel"><img src="../../public/Assets/defibrillatorWhite.png" /> Défibrillateurs</label>
     </div>
   </div>
