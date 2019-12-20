@@ -150,7 +150,7 @@
           Accès PMR : {{record.fields.acces_pmr}}
           <br />
           <a
-            :href="'https://www.google.com/maps/search/?api=1&query=' + record.fields.adresse"
+            :href="'https://www.google.com/maps/dir/?api=1&origin=' + yourLatitude +','+ yourLongitude +'&destination='+ record.fields.adresse"
           >Itinéraire</a>
         </l-popup>
         <l-icon :icon-anchor="staticAnchor">
@@ -171,7 +171,7 @@
           {{record.fields.categorie}}
           <br />
           <a
-            :href="'https://www.google.com/maps/search/?api=1&query=' + record.fields.adresse"
+            :href="'https://www.google.com/maps/dir/?api=1&origin=' + yourLatitude +','+ yourLongitude +'&destination='+record.fields.adresse"
           >Itinéraire</a>
         </l-popup>
         <l-icon :icon-anchor="staticAnchor">
@@ -194,7 +194,7 @@
           {{record.fields.conditions}}
           <br />
           <a
-            :href="'https://www.google.com/maps/search/?api=1&query=' + record.fields.adresse"
+            :href="'https://www.google.com/maps/dir/?api=1&origin=' + yourLatitude +','+ yourLongitude +'&destination='+record.fields.adresse"
           >Itinéraire</a>
         </l-popup>
         <l-icon :icon-anchor="staticAnchor">
@@ -215,7 +215,7 @@
           {{record.fields.adresse}}
           <br />
           <a
-            :href="'https://www.google.com/maps/search/?api=1&query=' + record.fields.adresse"
+            :href="'https://www.google.com/maps/dir/?api=1&origin=' + yourLatitude +','+ yourLongitude +'&destination='+record.fields.adresse"
           >Itinéraire</a>
         </l-popup>
       </LMarker>
@@ -233,7 +233,7 @@
           {{record.fields.adresse}}
           <br />
           <a
-            :href="'https://www.google.com/maps/search/?api=1&query=' + record.fields.adresse"
+            :href="'https://www.google.com/maps/dir/?api=1&origin=' + yourLatitude +','+ yourLongitude +'&destination='+record.fields.adresse"
           >Itinéraire</a>
         </l-popup>
         <l-icon :icon-anchor="staticAnchor">
@@ -260,7 +260,7 @@
           Position : {{record.fields.position_precise}}
           <br />
           <a
-            :href="'https://www.google.com/maps/search/?api=1&query=' + record.fields.adresse"
+            :href="'https://www.google.com/maps/dir/?api=1&origin=' + yourLatitude +','+ yourLongitude +'&destination='+record.fields.adresse"
           >Itinéraire</a>
         </l-popup>
       </LMarker>
