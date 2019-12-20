@@ -3,23 +3,33 @@
     <form>
       <ul>
         <li>
-          <input type="checkbox" id="centreville" @click="showPolygon(5)" name="centrevile"/>
+          <input type="checkbox" id="centreville" @click="showPolygon(5)" name="centrevile" />
           <label for="centreville">Centre ville</label>
         </li>
         <li>
-          <input type="checkbox" id="iledenantes" @click="showPolygon(3)" name="iledenantes"/>
+          <input type="checkbox" id="iledenantes" @click="showPolygon(3)" name="iledenantes" />
           <label for="iledenantes">Ile de nantes</label>
         </li>
         <li>
-          <input type="checkbox" id="malakoff" @click="showPolygon(1)" name="malakoff"/>
+          <input type="checkbox" id="malakoff" @click="showPolygon(1)" name="malakoff" />
           <label for="malakoff">Malakoff Saint-Donatien</label>
         </li>
         <li>
-          <input type="checkbox" id="doulon-bottiere" @click="showPolygon(10)" name="doulon-bottiere"/>
+          <input
+            type="checkbox"
+            id="doulon-bottiere"
+            @click="showPolygon(10)"
+            name="doulon-bottiere"
+          />
           <label for="doulon-bottiere">Doulon-Bottière</label>
         </li>
         <li>
-          <input type="checkbox" id="hautPave-saintFelix" @click="showPolygon(4)" name="hautPave-saintFelix"/>
+          <input
+            type="checkbox"
+            id="hautPave-saintFelix"
+            @click="showPolygon(4)"
+            name="hautPave-saintFelix"
+          />
           <label for="hautPave-saintFelix">Haut Pavé - Saint Felix</label>
         </li>
         <li>
@@ -27,11 +37,21 @@
           <label for="breil-barberie">Breil barberie</label>
         </li>
         <li>
-          <input type="checkbox" id="dervalliere-zola" @click="showPolygon(0)" name="dervalliere-zola"/>
+          <input
+            type="checkbox"
+            id="dervalliere-zola"
+            @click="showPolygon(0)"
+            name="dervalliere-zola"
+          />
           <label for="dervalliere-zola">Dervallières - Zola</label>
         </li>
         <li>
-          <input type="checkbox" id="chantenay-bellevue-sainteAnne" @click="showPolygon(2)" name="chantenay-bellevue-sainteAnne"/>
+          <input
+            type="checkbox"
+            id="chantenay-bellevue-sainteAnne"
+            @click="showPolygon(2)"
+            name="chantenay-bellevue-sainteAnne"
+          />
           <label for="chantenay-bellevue-sainteAnne">Chantenay - Bellevue - Sainte Anne</label>
         </li>
         <li>
@@ -102,7 +122,11 @@
         :lat-lng="[record.geometry.coordinates[1], record.geometry.coordinates[0]]"
       >
         <l-popup :options="{ autoClose: true, closeOnClick: true }">
-          {{record.fields.adresse}} <br> {{record.fields.descriptif}} <br> {{record.fields.conditions}}
+          {{record.fields.adresse}}
+          <br />
+          {{record.fields.descriptif}}
+          <br />
+          {{record.fields.conditions}}
         </l-popup>
         <l-icon :icon-anchor="staticAnchor">
           <img src="../../public/Assets/GonfleurVeloOK.png" />
@@ -116,7 +140,13 @@
         :key="record.recordid"
         :lat-lng="[record.geometry.coordinates[1], record.geometry.coordinates[0]]"
       >
-        <l-popup :options="{ autoClose: true, closeOnClick: true }">{{record.fields.adresse}} <br> Accès PMR : {{record.fields.acces_pmr}}</l-popup>
+        <l-popup :options="{ autoClose: true, closeOnClick: true }">
+          {{record.fields.adresse}}
+          <br />
+          Accès PMR : {{record.fields.acces_pmr}}"
+          <b>Blah blah Village</b>
+          <a href="https://www.google.com/maps/dir/?api=1">Test</a>"
+        </l-popup>
         <l-icon :icon-anchor="staticAnchor">
           <img src="../../public/Assets/wcPublicOK.png" />
         </l-icon>
@@ -129,7 +159,11 @@
         :key="record.recordid"
         :lat-lng="[record.geometry.coordinates[1], record.geometry.coordinates[0]]"
       >
-        <l-popup :options="{ autoClose: true, closeOnClick: true }">{{record.fields.adresse}} <br> {{record.fields.categorie}}</l-popup>
+        <l-popup :options="{ autoClose: true, closeOnClick: true }">
+          {{record.fields.adresse}}
+          <br />
+          {{record.fields.categorie}}
+        </l-popup>
         <l-icon :icon-anchor="staticAnchor">
           <img src="../../public/Assets/ComposteursOK.png" />
         </l-icon>
@@ -142,7 +176,14 @@
         :key="record.recordid"
         :lat-lng="[record.geometry.coordinates[1], record.geometry.coordinates[0]]"
       >
-        <l-popup :options="{ autoClose: true, closeOnClick: true }">{{record.fields.adresse}} <br> {{record.fields.descriptif}} <br> {{record.fields.conditions}}</l-popup>
+        <l-popup :options="{ autoClose: true, closeOnClick: true }">
+          {{record.fields.adresse}}
+          <br />
+          {{record.fields.descriptif}}
+          <br />
+          {{record.fields.conditions}}
+          <a href="https://www.google.com/maps/dir/?api=1"></a>
+        </l-popup>
         <l-icon :icon-anchor="staticAnchor">
           <img src="../../public/Assets/abrisVeloOK.png" />
         </l-icon>
@@ -155,7 +196,11 @@
         :key="record.recordid"
         :lat-lng="[record.geometry.coordinates[1], record.geometry.coordinates[0]]"
       >
-        <l-popup :options="{ autoClose: true, closeOnClick: true }">{{record.fields.nom_reseau}} <br> {{record.fields.adresse}}</l-popup>
+        <l-popup :options="{ autoClose: true, closeOnClick: true }">
+          {{record.fields.nom_reseau}}
+          <br />
+          {{record.fields.adresse}}
+        </l-popup>
       </LMarker>
       <LMarker
         v-if="record.geometry !== undefined && decheteriesShow === true && isIn(record, checkedQuartiers)"
@@ -165,7 +210,11 @@
         :key="record.recordid"
         :lat-lng="[record.geometry.coordinates[1], record.geometry.coordinates[0]]"
       >
-        <l-popup :options="{ autoClose: true, closeOnClick: true }">{{record.fields.nom_complet}} <br> {{record.fields.adresse}}</l-popup>
+        <l-popup :options="{ autoClose: true, closeOnClick: true }">
+          {{record.fields.nom_complet}}
+          <br />
+          {{record.fields.adresse}}
+        </l-popup>
         <l-icon :icon-anchor="staticAnchor">
           <img src="../../public/Assets/recyclerieOK.png" />
         </l-icon>
@@ -179,10 +228,14 @@
         :lat-lng="[record.geometry.coordinates[1], record.geometry.coordinates[0]]"
       >
         <l-popup :options="{ autoClose: true, closeOnClick: true }">
-          {{record.fields.designation}} <br>
-          {{record.fields.adresse}} <br>
-          {{record.fields.jours_ouverture}} <br>
-          Heure ouverture : {{record.fields.heur_ouverture}} Heure fermeture : {{record.fields.heure_fermeture}} <br>
+          {{record.fields.designation}}
+          <br />
+          {{record.fields.adresse}}
+          <br />
+          {{record.fields.jours_ouverture}}
+          <br />
+          Heure ouverture : {{record.fields.heur_ouverture}} Heure fermeture : {{record.fields.heure_fermeture}}
+          <br />
           Position : {{record.fields.position_precise}}
         </l-popup>
       </LMarker>
@@ -209,7 +262,14 @@
 </template>
 
 <script>
-import { LMap, LTileLayer, LMarker, LIcon, LPolygon, LPopup } from "vue2-leaflet";
+import {
+  LMap,
+  LTileLayer,
+  LMarker,
+  LIcon,
+  LPolygon,
+  LPopup
+} from "vue2-leaflet";
 import { Icon } from "leaflet";
 import Vue from "vue";
 import "leaflet/dist/leaflet.css";
@@ -340,8 +400,8 @@ export default {
     },
     showPolygon(index) {
       this.polygons[index].show = !this.polygons[index].show;
-      const isEqual = (element) => element == index;  
-      if(this.checkedQuartiers.includes(index)) {
+      const isEqual = element => element == index;
+      if (this.checkedQuartiers.includes(index)) {
         const toSplice = this.checkedQuartiers.findIndex(isEqual);
         this.checkedQuartiers.splice(toSplice, 1);
       } else {
@@ -355,10 +415,10 @@ export default {
       let result = quartiers.map(quartier => {
         return inside(record.fields.location, this.polygons[quartier].coords);
       });
-      if (result.includes(true)){
+      if (result.includes(true)) {
         return true;
       } else {
-        return false
+        return false;
       }
     }
   },
