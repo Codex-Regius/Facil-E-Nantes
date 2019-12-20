@@ -94,7 +94,7 @@
         </l-icon>
       </LMarker>
       <LMarker
-        v-if="record.geometry !== undefined && gonfleurShow === true && isIn(record, checkedQuartiers)"
+        v-if="record.geometry !== undefined && gonfleurShow === true && isInPolygon(record, checkedQuartiers)"
         id="gonfleur"
         v-for="record in gonfleur"
         :show="false"
@@ -109,7 +109,7 @@
         </l-icon>
       </LMarker>
       <LMarker
-        v-if="record.geometry !== undefined && toiletteShow === true && isIn(record, checkedQuartiers)"
+        v-if="record.geometry !== undefined && toiletteShow === true && isInPolygon(record, checkedQuartiers)"
         id="toilette"
         v-for="record in toilette"
         :show="false"
@@ -122,7 +122,7 @@
         </l-icon>
       </LMarker>
       <LMarker
-        v-if="record.geometry !== undefined && composteShow === true && isIn(record, checkedQuartiers)"
+        v-if="record.geometry !== undefined && composteShow === true && isInPolygon(record, checkedQuartiers)"
         id="composte"
         v-for="record in composte"
         :show="false"
@@ -135,7 +135,7 @@
         </l-icon>
       </LMarker>
       <LMarker
-        v-if="record.geometry !== undefined && abrisShow === true && isIn(record, checkedQuartiers)"
+        v-if="record.geometry !== undefined && abrisShow === true && isInPolygon(record, checkedQuartiers)"
         id="abris"
         v-for="record in abris"
         :show="false"
@@ -148,7 +148,7 @@
         </l-icon>
       </LMarker>
       <LMarker
-        v-if="record.geometry !== undefined && wifiShow === true && isIn(record, checkedQuartiers)"
+        v-if="record.geometry !== undefined && wifiShow === true && isInPolygon(record, checkedQuartiers)"
         id="wifi"
         v-for="record in wifi"
         :show="false"
@@ -158,7 +158,7 @@
         <l-popup :options="{ autoClose: true, closeOnClick: true }">{{record.fields.nom_reseau}} <br> {{record.fields.adresse}}</l-popup>
       </LMarker>
       <LMarker
-        v-if="record.geometry !== undefined && decheteriesShow === true && isIn(record, checkedQuartiers)"
+        v-if="record.geometry !== undefined && decheteriesShow === true && isInPolygon(record, checkedQuartiers)"
         id="decheterie"
         v-for="record in decheteries"
         :show="false"
@@ -172,7 +172,7 @@
       </LMarker>
       <LMarker
         v-for="record in defibrillateur"
-        v-if="record.geometry !== undefined && defibrillateurShow === true && isIn(record, checkedQuartiers)"
+        v-if="record.geometry !== undefined && defibrillateurShow === true && isInPolygon(record, checkedQuartiers)"
         id="defibrillateur"
         :show="false"
         :key="record.recordid"
@@ -346,12 +346,10 @@ export default {
         this.checkedQuartiers.splice(toSplice, 1);
       } else {
         this.checkedQuartiers.push(index);
+
       }
     },
-    isInPolygon(point) {
-      return inside(point, this.polygons[index].coords);
-    },
-    isIn(record, quartiers) {
+    isInPolygon(record, quartiers) {
       let result = quartiers.map(quartier => {
         return inside(record.fields.location, this.polygons[quartier].coords);
       });
