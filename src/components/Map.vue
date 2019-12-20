@@ -143,9 +143,11 @@
         <l-popup :options="{ autoClose: true, closeOnClick: true }">
           {{record.fields.adresse}}
           <br />
-          Accès PMR : {{record.fields.acces_pmr}}"
-          <b>Blah blah Village</b>
-          <a href="https://www.google.com/maps/dir/?api=1">Test</a>"
+          Accès PMR : {{record.fields.acces_pmr}}
+          <br />
+          <a
+            :href="'https://www.google.com/maps/search/?api=1&query=' + record.fields.adresse"
+          >Intinéraire</a>
         </l-popup>
         <l-icon :icon-anchor="staticAnchor">
           <img src="../../public/Assets/wcPublicOK.png" />
