@@ -3,47 +3,67 @@
     <form>
       <ul>
         <li>
-          <input type="checkbox" id="centreville" @click="showPolygon(5)" name="centrevile"/>
+          <input type="checkbox" id="centreville" @click="showPolygon(5)" name="centrevile" />
           <label for="centreville">Centre ville</label>
         </li>
         <li>
-          <input type="checkbox" id="iledenantes" @click="showPolygon(3)" name="iledenantes"/>
+          <input type="checkbox" id="iledenantes" @click="showPolygon(3)" name="iledenantes" />
           <label for="iledenantes">Ile de nantes</label>
         </li>
         <li>
-          <input type="checkbox" id="malakoff" @click="showPolygon(1)" name="malakoff"/>
+          <input type="checkbox" id="malakoff" @click="showPolygon(1)" name="malakoff" />
           <label for="malakoff">Malakoff Saint-Donatien</label>
         </li>
         <li>
-          <input type="checkbox" id="doulon-bottiere" @click="showPolygon(10)" name="doulon-bottiere"/>
+          <input
+            type="checkbox"
+            id="doulon-bottiere"
+            @click="showPolygon(10)"
+            name="doulon-bottiere"
+          />
           <label for="doulon-bottiere">Doulon-Bottière</label>
         </li>
         <li>
-          <input type="checkbox" id="hautPave-saintFelix" @click="showPolygon(4)" name="hautPave-saintFelix"/>
+          <input
+            type="checkbox"
+            id="hautPave-saintFelix"
+            @click="showPolygon(4)"
+            name="hautPave-saintFelix"
+          />
           <label for="hautPave-saintFelix">Haut Pavé - Saint Felix</label>
         </li>
         <li>
-          <input type="checkbox" id="breil-barberie" @click="showPolygon(8)" name="breil-barberie"/>
+          <input type="checkbox" id="breil-barberie" @click="showPolygon(8)" name="breil-barberie" />
           <label for="breil-barberie">Breil barberie</label>
         </li>
         <li>
-          <input type="checkbox" id="dervalliere-zola" @click="showPolygon(0)" name="dervalliere-zola"/>
+          <input
+            type="checkbox"
+            id="dervalliere-zola"
+            @click="showPolygon(0)"
+            name="dervalliere-zola"
+          />
           <label for="dervalliere-zola">Dervallières - Zola</label>
         </li>
         <li>
-          <input type="checkbox" id="chantenay-bellevue-sainteAnne" @click="showPolygon(2)" name="chantenay-bellevue-sainteAnne"/>
+          <input
+            type="checkbox"
+            id="chantenay-bellevue-sainteAnne"
+            @click="showPolygon(2)"
+            name="chantenay-bellevue-sainteAnne"
+          />
           <label for="chantenay-bellevue-sainteAnne">Chantenay - Bellevue - Sainte Anne</label>
         </li>
         <li>
-          <input type="checkbox" id="nantesNord" @click="showPolygon(7)" name="nantesNord"/>
+          <input type="checkbox" id="nantesNord" @click="showPolygon(7)" name="nantesNord" />
           <label for="nantesNord">Nantes Nord</label>
         </li>
         <li>
-          <input type="checkbox" id="nantesErdre" @click="showPolygon(6)" name="nantesErdre"/>
+          <input type="checkbox" id="nantesErdre" @click="showPolygon(6)" name="nantesErdre" />
           <label for="nantesErdre">Nantes Erdre</label>
         </li>
         <li>
-          <input type="checkbox" id="nantesSud" @click="showPolygon(9)" name="nantesSud"/>
+          <input type="checkbox" id="nantesSud" @click="showPolygon(9)" name="nantesSud" />
           <label for="nantesSud">Nantes Sud</label>
         </li>
       </ul>
@@ -87,7 +107,7 @@
     >
       <LTileLayer :url="url"></LTileLayer>
       <LMarker
-        v-if="gonfleurShow === true"
+        v-if="gonfleurShow === true && isIn(record, checkedQuartiers)"
         id="gonfleur"
         v-for="record in gonfleur"
         :show="false"
@@ -99,7 +119,7 @@
         </l-icon>
       </LMarker>
       <LMarker
-        v-if="toiletteShow === true"
+        v-if="toiletteShow === true && isIn(record, checkedQuartiers)"
         id="toilette"
         v-for="record in toilette"
         :show="false"
@@ -107,11 +127,11 @@
         :lat-lng="[record.geometry.coordinates[1], record.geometry.coordinates[0]]"
       >
         <l-icon :icon-anchor="staticAnchor">
-          <img src="../../public/Assets/wcPublicOK.png" />
+          <img src="../../public/Assets/ToilettesGrand.png" />
         </l-icon>
       </LMarker>
       <LMarker
-        v-if="composteShow === true"
+        v-if="composteShow === true && isIn(record, checkedQuartiers)"
         id="composte"
         v-for="record in composte"
         :show="false"
@@ -123,7 +143,7 @@
         </l-icon>
       </LMarker>
       <LMarker
-        v-if="abrisShow === true"
+        v-if="abrisShow === true && isIn(record, checkedQuartiers)"
         id="abris"
         v-for="record in abris"
         :show="false"
@@ -135,7 +155,7 @@
         </l-icon>
       </LMarker>
       <LMarker
-        v-if="wifiShow === true"
+        v-if="wifiShow === true && isIn(record, checkedQuartiers)"
         id="wifi"
         v-for="record in wifi"
         :show="false"
@@ -143,7 +163,7 @@
         :lat-lng="[record.geometry.coordinates[1], record.geometry.coordinates[0]]"
       ></LMarker>
       <LMarker
-        v-if="decheteriesShow === true"
+        v-if="decheteriesShow === true && isIn(record, checkedQuartiers)"
         id="decheterie"
         v-for="record in decheteries"
         :show="false"
@@ -151,12 +171,12 @@
         :lat-lng="[record.geometry.coordinates[1], record.geometry.coordinates[0]]"
       >
         <l-icon :icon-anchor="staticAnchor">
-          <img src="../../public/Assets/recyclerieOK.png" />
+          <img src="../../public/Assets/recyclerieGrand.png" />
         </l-icon>
       </LMarker>
       <LMarker
         v-for="record in defibrillateur"
-        v-if="record.geometry !== undefined && defibrillateurShow === true && isIn(record, checkedQuartiers)"
+        v-if="record.geometry !== undefined && defibrillateurShow === true "
         id="defibrillateur"
         :show="false"
         :key="record.recordid"
@@ -171,8 +191,15 @@
       ></LPolygon>
     </LMap>
     <div id="defibrillateurButton">
-      <input type="checkbox" id="defibrillateur" value="defibrillateur" v-model="defibrillateurShow" />
-      <label for="defibrillateur" id="defibrillateurLabel"><img src="../../public/Assets/defibrillatorWhite.png" /> Défibrillateurs</label>
+      <input
+        type="checkbox"
+        id="defibrillateur"
+        value="defibrillateur"
+        v-model="defibrillateurShow"
+      >
+      <label for="defibrillateur" id="defibrillateurLabel">
+        <img src="../../public/Assets/defibrillatorWhite.png" /> Défibrillateurs
+      </label>
     </div>
   </div>
 </template>
@@ -182,7 +209,7 @@ import { LMap, LTileLayer, LMarker, LIcon, LPolygon } from "vue2-leaflet";
 import { Icon } from "leaflet";
 import Vue from "vue";
 import "leaflet/dist/leaflet.css";
-import axios from 'axios';
+import axios from "axios";
 import inside from "point-in-polygon";
 
 Vue.component("l-map", LMap);
@@ -272,7 +299,7 @@ export default {
         }),
       axios
         .get(
-          "https://data.nantesmetropole.fr/api/records/1.0/search/?dataset=244400404_defibrillateurs-nantes&rows=158&sort=designation&facet=nature_site"
+          "https://data.nantesmetropole.fr/api/records/1.0/search/?dataset=244400404_defibrillateurs-nantes&rows=158&sort=designation&facet=nature_site/"
         )
         .then(response => {
           this.defibrillateur = response.data.records;
@@ -304,18 +331,17 @@ export default {
     },
     showPolygon(index) {
       this.polygons[index].show = !this.polygons[index].show;
-      if(this.checkedQuartiers.includes(index)) {
-        this.checkedQuartiers.splice(0, 1)
+      if (this.checkedQuartiers.includes(index)) {
+        this.checkedQuartiers.splice(0, 1);
       } else {
-      this.checkedQuartiers.push(index);
+        this.checkedQuartiers.push(index);
       }
     },
     isInPolygon(point) {
       return inside(point, this.polygons[index].coords);
     },
     isIn(record, quartiers) {
-      
-      let result = quartiers.map((quartier) => {
+      let result = quartiers.map(quartier => {
         return inside(record.fields.location, this.polygons[quartier].coords);
       });
 
@@ -368,8 +394,8 @@ input {
   margin-right: 5px;
 }
 
-#defibrillateurButton{
-position: absolute;
+#defibrillateurButton {
+  position: absolute;
   z-index: 999;
   bottom: 0px;
   right: 128px;
@@ -392,12 +418,12 @@ position: absolute;
   width: 54px;
 }
 
-#defibrillateur{
+#defibrillateur {
   visibility: hidden;
   display: none;
 }
 
-#defibrillateurLabel{
+#defibrillateurLabel {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -415,5 +441,4 @@ position: absolute;
   -ms-flex-align: center;
   align-items: center;
 }
-
 </style>
