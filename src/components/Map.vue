@@ -3,23 +3,33 @@
     <form>
       <ul>
         <li>
-          <input type="checkbox" id="centreville" @click="showPolygon(5)" name="centrevile"/>
+          <input type="checkbox" id="centreville" @click="showPolygon(5)" name="centrevile" />
           <label for="centreville">Centre ville</label>
         </li>
         <li>
-          <input type="checkbox" id="iledenantes" @click="showPolygon(3)" name="iledenantes"/>
+          <input type="checkbox" id="iledenantes" @click="showPolygon(3)" name="iledenantes" />
           <label for="iledenantes">Ile de nantes</label>
         </li>
         <li>
-          <input type="checkbox" id="malakoff" @click="showPolygon(1)" name="malakoff"/>
+          <input type="checkbox" id="malakoff" @click="showPolygon(1)" name="malakoff" />
           <label for="malakoff">Malakoff Saint-Donatien</label>
         </li>
         <li>
-          <input type="checkbox" id="doulon-bottiere" @click="showPolygon(10)" name="doulon-bottiere"/>
+          <input
+            type="checkbox"
+            id="doulon-bottiere"
+            @click="showPolygon(10)"
+            name="doulon-bottiere"
+          />
           <label for="doulon-bottiere">Doulon-Bottière</label>
         </li>
         <li>
-          <input type="checkbox" id="hautPave-saintFelix" @click="showPolygon(4)" name="hautPave-saintFelix"/>
+          <input
+            type="checkbox"
+            id="hautPave-saintFelix"
+            @click="showPolygon(4)"
+            name="hautPave-saintFelix"
+          />
           <label for="hautPave-saintFelix">Haut Pavé - Saint Felix</label>
         </li>
         <li>
@@ -27,11 +37,21 @@
           <label for="breil-barberie">Breil barberie</label>
         </li>
         <li>
-          <input type="checkbox" id="dervalliere-zola" @click="showPolygon(0)" name="dervalliere-zola"/>
+          <input
+            type="checkbox"
+            id="dervalliere-zola"
+            @click="showPolygon(0)"
+            name="dervalliere-zola"
+          />
           <label for="dervalliere-zola">Dervallières - Zola</label>
         </li>
         <li>
-          <input type="checkbox" id="chantenay-bellevue-sainteAnne" @click="showPolygon(2)" name="chantenay-bellevue-sainteAnne"/>
+          <input
+            type="checkbox"
+            id="chantenay-bellevue-sainteAnne"
+            @click="showPolygon(2)"
+            name="chantenay-bellevue-sainteAnne"
+          />
           <label for="chantenay-bellevue-sainteAnne">Chantenay - Bellevue - Sainte Anne</label>
         </li>
         <li>
@@ -76,8 +96,6 @@
         <label for="decheterie">Décheteries</label>
       </li>
     </ul>
-    <input type="checkbox" id="defibrillateur" value="defibrillateur" v-model="defibrillateurShow" />
-    <label for="defibrillateur">Défibrillateur</label>
 
     <LMap
       style="height: 80%; width: 100%"
@@ -118,7 +136,7 @@
       >
         <l-popup :options="{ autoClose: true, closeOnClick: true }">{{record.fields.adresse}} <br> Accès PMR : {{record.fields.acces_pmr}}</l-popup>
         <l-icon :icon-anchor="staticAnchor">
-          <img src="../../public/Assets/wcPublicOK.png" />
+          <img src="../../public/Assets/ToilettesGrand.png" />
         </l-icon>
       </LMarker>
       <LMarker
@@ -167,7 +185,7 @@
       >
         <l-popup :options="{ autoClose: true, closeOnClick: true }">{{record.fields.nom_complet}} <br> {{record.fields.adresse}}</l-popup>
         <l-icon :icon-anchor="staticAnchor">
-          <img src="../../public/Assets/recyclerieOK.png" />
+          <img src="../../public/Assets/recyclerieGrand.png" />
         </l-icon>
       </LMarker>
       <LMarker
@@ -308,7 +326,7 @@ export default {
         }),
       axios
         .get(
-          "https://data.nantesmetropole.fr/api/records/1.0/search/?dataset=244400404_defibrillateurs-nantes&rows=158&sort=designation&facet=nature_site"
+          "https://data.nantesmetropole.fr/api/records/1.0/search/?dataset=244400404_defibrillateurs-nantes&rows=158&sort=designation&facet=nature_site/"
         )
         .then(response => {
           this.defibrillateur = response.data.records;

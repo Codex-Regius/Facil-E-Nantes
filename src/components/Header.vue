@@ -1,12 +1,36 @@
 <template>
   <div class="header">
-    <h1 class="facil">{{ facil }}</h1>
-    <h1>{{ enantes }}</h1>
+    <div class="name">
+      <h1 class="facil">{{ facil }}</h1>
+      <h1>{{ enantes }}</h1>
+    </div>
+    <div>
+      <h2>Prévision Météo de Nantes</h2>
+      <div class="meteo">
+        <img v-bind:src="meteo[0].observation[0].iconLink + '?apiKey=3eDEt59IRt4OTDgu72sWOEcUtZjEH3MZFuqEoizPP1M'"/>
+        <p>{{meteo[0].observation[0].skyDescription}}</p>
+        <p>{{meteo[0].observation[0].temperature}}°C</p>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
+  data(){
+    return{
+      meteo: []
+    }
+  },
+  beforeCreate(){
+    axios.get('http://localhost:8050/')
+        .then(response => {
+          console.log(response.data.observations.location)
+          this.meteo = response.data.observations.location
+        })
+  },
   name: 'Header',
   props: {
     facil: String,
@@ -21,9 +45,16 @@ export default {
   background: lightgray;
   margin: 0px;
   display: flex;
-  align-content: center;
-  justify-content: center;
+  align-items: center;
+  justify-content: space-around;
+  flex-direction: column;
   padding: 20px
+}
+
+@media screen and (min-width: 850px){
+  .header{
+    flex-direction: row
+  }
 }
 
 h1{
@@ -35,6 +66,21 @@ h1{
 .facil{
   color: #007BC1;
   margin-right: 5px;
+}
+
+.meteo{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.meteo p{
+  margin-right: 10px;
+  margin-left: 10px;
+}
+
+.name{
+  display: flex;
 }
 
 </style>
