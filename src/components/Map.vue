@@ -3,6 +3,10 @@
     <form>
       <ul>
         <li>
+          <input type="checkbox" id="all" @click="showAll()" name="all" />
+          <label for="all">Tous</label>
+        </li>
+        <li>
           <input type="checkbox" id="centreville" @click="showPolygon(5)" name="centrevile" />
           <label for="centreville">Centre ville</label>
         </li>
@@ -15,21 +19,11 @@
           <label for="malakoff">Malakoff Saint-Donatien</label>
         </li>
         <li>
-          <input
-            type="checkbox"
-            id="doulon-bottiere"
-            @click="showPolygon(10)"
-            name="doulon-bottiere"
-          />
+          <input type="checkbox" id="doulon-bottiere" @click="showPolygon(10)" name="doulon-bottiere"/>
           <label for="doulon-bottiere">Doulon-Bottière</label>
         </li>
         <li>
-          <input
-            type="checkbox"
-            id="hautPave-saintFelix"
-            @click="showPolygon(4)"
-            name="hautPave-saintFelix"
-          />
+          <input type="checkbox" id="hautPave-saintFelix" @click="showPolygon(4)" name="hautPave-saintFelix"/>
           <label for="hautPave-saintFelix">Haut Pavé - Saint Felix</label>
         </li>
         <li>
@@ -37,21 +31,11 @@
           <label for="breil-barberie">Breil barberie</label>
         </li>
         <li>
-          <input
-            type="checkbox"
-            id="dervalliere-zola"
-            @click="showPolygon(0)"
-            name="dervalliere-zola"
-          />
+          <input type="checkbox" id="dervalliere-zola" @click="showPolygon(0)" name="dervalliere-zola"/>
           <label for="dervalliere-zola">Dervallières - Zola</label>
         </li>
         <li>
-          <input
-            type="checkbox"
-            id="chantenay-bellevue-sainteAnne"
-            @click="showPolygon(2)"
-            name="chantenay-bellevue-sainteAnne"
-          />
+          <input type="checkbox" id="chantenay-bellevue-sainteAnne" @click="showPolygon(2)" name="chantenay-bellevue-sainteAnne"/>
           <label for="chantenay-bellevue-sainteAnne">Chantenay - Bellevue - Sainte Anne</label>
         </li>
         <li>
@@ -355,6 +339,19 @@ export default {
     },
     boundsUpdated(bounds) {
       this.bounds = bounds;
+    },
+    showAll() {
+      if (this.checkedQuartiers.length < 1) {
+        this.checkedQuartiers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+        for (let i=0; i < this.polygons.length; i++){
+          this.polygons[i].show = !this.polygons[i].show;
+        };
+      } else {
+        this.checkedQuartiers = [];
+        for (let i=0; i < this.polygons.length; i++){
+          this.polygons[i].show = !this.polygons[i].show;
+        };
+      }
     },
     showPolygon(index) {
       this.polygons[index].show = !this.polygons[index].show;
