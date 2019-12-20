@@ -3,47 +3,67 @@
     <form>
       <ul>
         <li>
-          <input type="checkbox" id="centreville" @click="showPolygon(5)" name="centrevile"/>
+          <input type="checkbox" id="centreville" @click="showPolygon(5)" name="centrevile" />
           <label for="centreville">Centre ville</label>
         </li>
         <li>
-          <input type="checkbox" id="iledenantes" @click="showPolygon(3)" name="iledenantes"/>
+          <input type="checkbox" id="iledenantes" @click="showPolygon(3)" name="iledenantes" />
           <label for="iledenantes">Ile de nantes</label>
         </li>
         <li>
-          <input type="checkbox" id="malakoff" @click="showPolygon(1)" name="malakoff"/>
+          <input type="checkbox" id="malakoff" @click="showPolygon(1)" name="malakoff" />
           <label for="malakoff">Malakoff Saint-Donatien</label>
         </li>
         <li>
-          <input type="checkbox" id="doulon-bottiere" @click="showPolygon(10)" name="doulon-bottiere"/>
+          <input
+            type="checkbox"
+            id="doulon-bottiere"
+            @click="showPolygon(10)"
+            name="doulon-bottiere"
+          />
           <label for="doulon-bottiere">Doulon-Bottière</label>
         </li>
         <li>
-          <input type="checkbox" id="hautPave-saintFelix" @click="showPolygon(4)" name="hautPave-saintFelix"/>
+          <input
+            type="checkbox"
+            id="hautPave-saintFelix"
+            @click="showPolygon(4)"
+            name="hautPave-saintFelix"
+          />
           <label for="hautPave-saintFelix">Haut Pavé - Saint Felix</label>
         </li>
         <li>
-          <input type="checkbox" id="breil-barberie" @click="showPolygon(8)" name="breil-barberie"/>
+          <input type="checkbox" id="breil-barberie" @click="showPolygon(8)" name="breil-barberie" />
           <label for="breil-barberie">Breil barberie</label>
         </li>
         <li>
-          <input type="checkbox" id="dervalliere-zola" @click="showPolygon(0)" name="dervalliere-zola"/>
+          <input
+            type="checkbox"
+            id="dervalliere-zola"
+            @click="showPolygon(0)"
+            name="dervalliere-zola"
+          />
           <label for="dervalliere-zola">Dervallières - Zola</label>
         </li>
         <li>
-          <input type="checkbox" id="chantenay-bellevue-sainteAnne" @click="showPolygon(2)" name="chantenay-bellevue-sainteAnne"/>
+          <input
+            type="checkbox"
+            id="chantenay-bellevue-sainteAnne"
+            @click="showPolygon(2)"
+            name="chantenay-bellevue-sainteAnne"
+          />
           <label for="chantenay-bellevue-sainteAnne">Chantenay - Bellevue - Sainte Anne</label>
         </li>
         <li>
-          <input type="checkbox" id="nantesNord" @click="showPolygon(7)" name="nantesNord"/>
+          <input type="checkbox" id="nantesNord" @click="showPolygon(7)" name="nantesNord" />
           <label for="nantesNord">Nantes Nord</label>
         </li>
         <li>
-          <input type="checkbox" id="nantesErdre" @click="showPolygon(6)" name="nantesErdre"/>
+          <input type="checkbox" id="nantesErdre" @click="showPolygon(6)" name="nantesErdre" />
           <label for="nantesErdre">Nantes Erdre</label>
         </li>
         <li>
-          <input type="checkbox" id="nantesSud" @click="showPolygon(9)" name="nantesSud"/>
+          <input type="checkbox" id="nantesSud" @click="showPolygon(9)" name="nantesSud" />
           <label for="nantesSud">Nantes Sud</label>
         </li>
       </ul>
@@ -88,6 +108,11 @@
       @update:bounds="boundsUpdated"
     >
       <LTileLayer :url="url"></LTileLayer>
+      <LMarker :lat-lng="[yourLatitude, yourLongitude]">
+        <l-icon :icon-anchor="staticAnchor" :icon-size="iconSize">
+          <img class="youHere" src="../../public/Assets/geolocalisation.png" />
+        </l-icon>
+      </LMarker>
       <LMarker
         v-if="gonfleurShow === true && isIn(record, checkedQuartiers)"
         id="gonfleur"
@@ -172,9 +197,16 @@
         :fillColor="polygon.fillColor"
       ></LPolygon>
     </LMap>
-    <div id=defibrillateurButton>
-      <input type="checkbox" id="defibrillateur" value="defibrillateur" v-model="defibrillateurShow">
-      <label for="defibrillateur" id="defibrillateurLabel"><img src="../../public/Assets/defibrillatorWhite.png" /> Défibrillateurs</label>
+    <div id="defibrillateurButton">
+      <input
+        type="checkbox"
+        id="defibrillateur"
+        value="defibrillateur"
+        v-model="defibrillateurShow"
+      />
+      <label for="defibrillateur" id="defibrillateurLabel">
+        <img src="../../public/Assets/defibrillatorWhite.png" /> Défibrillateurs
+      </label>
     </div>
   </div>
 </template>
@@ -184,7 +216,7 @@ import { LMap, LTileLayer, LMarker, LIcon, LPolygon } from "vue2-leaflet";
 import { Icon } from "leaflet";
 import Vue from "vue";
 import "leaflet/dist/leaflet.css";
-import axios from 'axios';
+import axios from "axios";
 import inside from "point-in-polygon";
 
 Vue.component("l-map", LMap);
@@ -226,10 +258,16 @@ export default {
       iconSize: [32, 37],
       iconSize: 20,
       checkedQuartiers: [],
-      polygons: []
+      polygons: [],
+      yourLatitude: 0,
+      yourLongitude: 0
     };
   },
   beforeCreate() {
+    navigator.geolocation.getCurrentPosition(position => {
+      this.yourLatitude = position.coords.latitude;
+      this.yourLongitude = position.coords.longitude;
+    });
     axios
       .get(
         "https://data.nantesmetropole.fr/api/records/1.0/search/?dataset=244400404_toilettes-publiques-nantes-metropole&rows=65&facet=commune&facet=pole&facet=type&facet=automatique&facet=acces_pmr&refine.commune=Nantes&exclude.commune=Thouar%C3%A9-sur-Loire&exclude.commune=Carquefou&exclude.commune=Rez%C3%A9&exclude.commune=Le+Pellerin"
@@ -306,10 +344,15 @@ export default {
     },
     showPolygon(index) {
       this.polygons[index].show = !this.polygons[index].show;
+<<<<<<< HEAD
       const isEqual = (element) => element == index;  
       if(this.checkedQuartiers.includes(index)) {
         const toSplice = this.checkedQuartiers.findIndex(isEqual);
         this.checkedQuartiers.splice(toSplice, 1);
+=======
+      if (this.checkedQuartiers.includes(index)) {
+        this.checkedQuartiers.splice(0, 1);
+>>>>>>> 90bb83088c5cafbdc247d92da397b8f1ea78bfd8
       } else {
         this.checkedQuartiers.push(index);
       }
@@ -318,8 +361,7 @@ export default {
       return inside(point, this.polygons[index].coords);
     },
     isIn(record, quartiers) {
-      
-      let result = quartiers.map((quartier) => {
+      let result = quartiers.map(quartier => {
         return inside(record.fields.location, this.polygons[quartier].coords);
       });
       if (result.includes(true)){
@@ -375,8 +417,8 @@ input {
   margin-right: 5px;
 }
 
-#defibrillateurButton{
-position: absolute;
+#defibrillateurButton {
+  position: absolute;
   z-index: 999;
   bottom: 0px;
   right: 128px;
@@ -399,12 +441,12 @@ position: absolute;
   width: 54px;
 }
 
-#defibrillateur{
+#defibrillateur {
   visibility: hidden;
   display: none;
 }
 
-#defibrillateurLabel{
+#defibrillateurLabel {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -423,4 +465,7 @@ position: absolute;
   align-items: center;
 }
 
+.youHere {
+  height: 100%;
+}
 </style>
