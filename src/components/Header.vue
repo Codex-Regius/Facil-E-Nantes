@@ -47,7 +47,14 @@ export default {
   display: flex;
   align-items: center;
   justify-content: space-around;
+  flex-direction: column;
   padding: 20px
+}
+
+@media screen and (min-width: 850px){
+  .header{
+    flex-direction: row
+  }
 }
 
 h1{
