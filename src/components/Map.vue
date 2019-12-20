@@ -54,30 +54,30 @@
     </form>
     <ul class="firstInput">
       <li>
-        <input type="checkbox" id="toilette" value="toilette" v-model="toiletteShow" />
-        <label for="toilette">Toilettes Public</label>
+        <input type="checkbox" id="toilette" class="inputItems" value="toilette" v-model="toiletteShow" />
+        <label class="labelIcon" for="toilette"><img class="iconInputToilette" v-bind:class="{ activeToilette: isActiveToilette}" @click="handleIconToilette" src="../../public/Assets/toiletteCheck.png"/> Toilettes Public</label>
       </li>
       <li>
-        <input type="checkbox" id="Gonfleur" value="Gonfleur" v-model="gonfleurShow" />
-        <label for="Gonfleur">Gonfleur à velo en libre service</label>
+        <input type="checkbox" id="Gonfleur" class="inputItems" value="Gonfleur" v-model="gonfleurShow" />
+        <label class="labelIcon" for="Gonfleur"><img class="iconInput" v-bind:class="{ activeGonfleur: isActiveGonfleur}" @click="handleIconGonfleur" src="../../public/Assets/gonfleurCheck.png"/>Gonfleur à velo en libre service</label>
       </li>
       <li>
-        <input type="checkbox" id="Abris-vélo" value="Abris-vélo" v-model="abrisShow" />
-        <label for="Abris-vélo">Abris vélo</label>
+        <input type="checkbox" id="Abris-vélo" class="inputItems" value="Abris-vélo" v-model="abrisShow" />
+        <label class="labelIcon" for="Abris-vélo"><img class="iconInput" v-bind:class="{ activeAbris: isActiveAbris}" @click="handleIconAbris" src="../../public/Assets/abrisCheck.png"/>Abris vélo</label>
       </li>
       <li>
-        <input type="checkbox" id="Wifi" value="Wifi" v-model="wifiShow" />
-        <label for="Wifi">Wifi Public</label>
+        <input type="checkbox" id="Wifi" class="inputItems" value="Wifi" v-model="wifiShow" />
+        <label class="labelIcon" for="Wifi"><img class="iconInput" v-bind:class="{ activeWifi: isActiveWifi}" @click="handleIconWifi" src="../../public/Assets/wifiCheck.png"/>Wifi Public</label>
       </li>
     </ul>
     <ul class="secondInput">
       <li>
-        <input type="checkbox" id="Composteur" value="Composteur" v-model="composteShow" />
-        <label for="Composteur">Composteur de quartier</label>
+        <input type="checkbox" id="Composteur" class="inputItems" value="Composteur" v-model="composteShow" />
+        <label class="labelIcon" for="Composteur"><img class="iconInput" v-bind:class="{ activeComposte: isActiveComposte}" @click="handleIconComposte" src="../../public/Assets/composteCheck.png"/>Composteur de quartier</label>
       </li>
       <li>
-        <input type="checkbox" id="decheterie" value="decheterie" v-model="decheteriesShow" />
-        <label for="decheterie">Décheteries</label>
+        <input type="checkbox" id="decheterie" class="inputItems" value="decheterie" v-model="decheteriesShow" />
+        <label class="labelIcon" for="decheterie"><img class="iconInput" v-bind:class="{ activeDecheterie: isActiveDecheterie}" @click="handleIconDecheterie" src="../../public/Assets/recyclerieCheck.png"/>Décheteries</label>
       </li>
     </ul>
 
@@ -158,6 +158,9 @@
         :lat-lng="[record.geometry.coordinates[1], record.geometry.coordinates[0]]"
       >
         <l-popup :options="{ autoClose: true, closeOnClick: true }">{{record.fields.nom_reseau}} <br> {{record.fields.adresse}}</l-popup>
+        <l-icon :icon-anchor="staticAnchor">
+          <img src="../../public/Assets/Wifi.png" />
+        </l-icon>
       </LMarker>
       <LMarker
         v-if="record.geometry !== undefined && decheteriesShow === true && isInPolygon(record, checkedQuartiers)"
@@ -240,6 +243,12 @@ export default {
         "https://api.mapbox.com/styles/v1/mapbox/streets-v11/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibGlyYXVkLWNvZWwiLCJhIjoiY2szem5od2Z4MGFrOTNnbW1ka3MwZWVlMSJ9.qKdr77MJ0XXL-t6Ii6yH8A",
       zoom: 13,
       center: [47.213039, -1.549931],
+      isActiveToilette : true,
+      isActiveGonfleur : true,
+      isActiveWifi : true,
+      isActiveAbris : true,
+      isActiveComposte : true,
+      isActiveDecheterie : true,
       toilette: [],
       gonfleur: [],
       composte: [],
@@ -255,6 +264,7 @@ export default {
       toiletteShow: false,
       gonfleurShow: false,
       staticAnchor: [25, 5],
+      iconSize: [16, 37],
       checkedQuartiers: [],
       polygons: [],
       yourLatitude: 0,
@@ -331,6 +341,25 @@ export default {
         });
   },
   methods: {
+    handleIconToilette(){
+      this.isActiveToilette = !this.isActiveToilette
+    },
+    handleIconGonfleur(){
+      this.isActiveGonfleur = !this.isActiveGonfleur
+    },
+    handleIconAbris(){
+      this.isActiveAbris = !this.isActiveAbris
+    },
+    handleIconWifi(){
+      this.isActiveWifi = !this.isActiveWifi
+    },
+    handleIconComposte(){
+      this.isActiveComposte = !this.isActiveComposte
+    },
+    handleIconDecheterie(){
+      this.isActiveDecheterie = !this.isActiveDecheterie
+    },
+
     zoomUpdated(zoom) {
       this.zoom = zoom;
     },
@@ -470,6 +499,56 @@ input {
 }
 
 .youHere {
-  height: 100%;
+  height: 100px;
+}
+
+.labelIcon{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.iconInput{
+  height: auto;
+  width: 40px;
+}
+.iconInputToilette{
+  height: auto;
+  width: 40px;
+}
+.activeToilette{
+  height: auto;
+  width: 40px;
+  filter: grayscale(1);
+}
+.activeGonfleur{
+  height: auto;
+  width: 40px;
+  filter: grayscale(1);
+}
+.activeAbris{
+  height: auto;
+  width: 40px;
+  filter: grayscale(1);
+}
+.activeWifi{
+  height: auto;
+  width: 40px;
+  filter: grayscale(1);
+}
+.activeComposte{
+  height: auto;
+  width: 40px;
+  filter: grayscale(1);
+}
+.activeDecheterie{
+  height: auto;
+  width: 40px;
+  filter: grayscale(1);
+}
+
+.inputItems{
+  display: none;
 }
 </style>
