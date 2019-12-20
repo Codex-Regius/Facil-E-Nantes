@@ -182,14 +182,6 @@
         :key="record.recordid"
         :lat-lng="[record.geometry.coordinates[1], record.geometry.coordinates[0]]"
       ></LMarker>
-      <LMarker
-        v-if="balNantes === true && isIn(record, checkedQuartiers)"
-        id="bal"
-        v-for="record in this.bal"
-        :show="false"
-        :key="record.CO_MUP"
-        :lat-lng="[record.geometry.coordinates[1], record.geometry.coordinates[0]]"
-      ></LMarker>
       <LPolygon
         v-for="(polygon, index) in polygons"
         v-if="polygon.show === true"
@@ -275,7 +267,6 @@ export default {
           "https://data.nantesmetropole.fr/api/records/1.0/search/?dataset=244400404_gonfleurs-libre-service-nantes-metropole&rows=16&facet=commune&facet=conditions&refine.commune=Nantes"
         )
         .then(response => {
-          console.log(response.data.records)
           this.gonfleur = response.data.records;
         }),
       axios
