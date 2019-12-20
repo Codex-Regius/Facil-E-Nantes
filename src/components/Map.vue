@@ -177,7 +177,7 @@
       </LMarker>
       <LMarker
         v-for="record in defibrillateur"
-        v-if="record.geometry !== undefined && defibrillateurShow === true && isInPolygon(record, checkedQuartiers)"
+        v-if="record.geometry !== undefined && defibrillateurShow === true "
         id="defibrillateur"
         :show="false"
         :key="record.recordid"
@@ -204,7 +204,7 @@
         type="checkbox"
         id="defibrillateur"
         value="defibrillateur"
-        v-model="defibrillateurShow"
+        @click="showDef()"
       />
       <label for="defibrillateur" id="defibrillateurLabel">
         <img src="../../public/Assets/defibrillatorWhite.png" /> Défibrillateurs
@@ -341,6 +341,9 @@ export default {
         });
   },
   methods: {
+    showDef() {
+      this.defibrillateurShow = !this.defibrillateurShow;
+    },
     handleIconToilette(){
       this.isActiveToilette = !this.isActiveToilette
     },
