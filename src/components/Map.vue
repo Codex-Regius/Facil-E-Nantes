@@ -89,69 +89,78 @@
     >
       <LTileLayer :url="url"></LTileLayer>
       <LMarker
-        v-if="gonfleurShow === true"
+        v-if="record.geometry !== undefined && gonfleurShow === true && isIn(record, checkedQuartiers)"
         id="gonfleur"
         v-for="record in gonfleur"
         :show="false"
         :key="record.recordid"
         :lat-lng="[record.geometry.coordinates[1], record.geometry.coordinates[0]]"
       >
-        <l-icon :icon-anchor="staticAnchor" :icon-size="iconSize">
+        <l-popup :options="{ autoClose: true, closeOnClick: true }">
+          {{record.fields.adresse}} <br> {{record.fields.descriptif}} <br> {{record.fields.conditions}}
+        </l-popup>
+        <l-icon :icon-anchor="staticAnchor">
           <img src="../../public/Assets/GonfleurVeloOK.png" />
         </l-icon>
       </LMarker>
       <LMarker
-        v-if="toiletteShow === true"
+        v-if="record.geometry !== undefined && toiletteShow === true && isIn(record, checkedQuartiers)"
         id="toilette"
         v-for="record in toilette"
         :show="false"
         :key="record.recordid"
         :lat-lng="[record.geometry.coordinates[1], record.geometry.coordinates[0]]"
       >
+        <l-popup :options="{ autoClose: true, closeOnClick: true }">{{record.fields.adresse}} <br> Accès PMR : {{record.fields.acces_pmr}}</l-popup>
         <l-icon :icon-anchor="staticAnchor">
           <img src="../../public/Assets/wcPublicOK.png" />
         </l-icon>
       </LMarker>
       <LMarker
-        v-if="composteShow === true"
+        v-if="record.geometry !== undefined && composteShow === true && isIn(record, checkedQuartiers)"
         id="composte"
         v-for="record in composte"
         :show="false"
         :key="record.recordid"
         :lat-lng="[record.geometry.coordinates[1], record.geometry.coordinates[0]]"
       >
+        <l-popup :options="{ autoClose: true, closeOnClick: true }">{{record.fields.adresse}} <br> {{record.fields.categorie}}</l-popup>
         <l-icon :icon-anchor="staticAnchor">
           <img src="../../public/Assets/ComposteursOK.png" />
         </l-icon>
       </LMarker>
       <LMarker
-        v-if="abrisShow === true"
+        v-if="record.geometry !== undefined && abrisShow === true && isIn(record, checkedQuartiers)"
         id="abris"
         v-for="record in abris"
         :show="false"
         :key="record.recordid"
         :lat-lng="[record.geometry.coordinates[1], record.geometry.coordinates[0]]"
       >
+        <l-popup :options="{ autoClose: true, closeOnClick: true }">{{record.fields.adresse}} <br> {{record.fields.descriptif}} <br> {{record.fields.conditions}}</l-popup>
         <l-icon :icon-anchor="staticAnchor">
           <img src="../../public/Assets/abrisVeloOK.png" />
         </l-icon>
       </LMarker>
       <LMarker
-        v-if="wifiShow === true"
+        v-if="record.geometry !== undefined && wifiShow === true && isIn(record, checkedQuartiers)"
         id="wifi"
         v-for="record in wifi"
         :show="false"
         :key="record.recordid"
         :lat-lng="[record.geometry.coordinates[1], record.geometry.coordinates[0]]"
-      ></LMarker>
+      >
+        <l-popup :options="{ autoClose: true, closeOnClick: true }">{{record.fields.nom_reseau}} <br> {{record.fields.adresse}}</l-popup>
+      </LMarker>
       <LMarker
-        v-if="decheteriesShow === true"
+        v-if="record.geometry !== undefined && decheteriesShow === true && isIn(record, checkedQuartiers)"
         id="decheterie"
         v-for="record in decheteries"
         :show="false"
         :key="record.recordid"
         :lat-lng="[record.geometry.coordinates[1], record.geometry.coordinates[0]]"
       >
+        <l-popup :options="{ autoClose: true, closeOnClick: true }">{{record.fields.nom_complet}} <br> {{record.fields.adresse}}</l-popup>
         <l-icon :icon-anchor="staticAnchor">
           <img src="../../public/Assets/recyclerieOK.png" />
         </l-icon>
@@ -163,7 +172,15 @@
         :show="false"
         :key="record.recordid"
         :lat-lng="[record.geometry.coordinates[1], record.geometry.coordinates[0]]"
-      ></LMarker>
+      >
+        <l-popup :options="{ autoClose: true, closeOnClick: true }">
+          {{record.fields.designation}} <br>
+          {{record.fields.adresse}} <br>
+          {{record.fields.jours_ouverture}} <br>
+          Heure ouverture : {{record.fields.heur_ouverture}} Heure fermeture : {{record.fields.heure_fermeture}} <br>
+          Position : {{record.fields.position_precise}}
+        </l-popup>
+      </LMarker>
       <LPolygon
         v-for="(polygon, index) in polygons"
         v-if="polygon.show === true"
@@ -180,7 +197,7 @@
 </template>
 
 <script>
-import { LMap, LTileLayer, LMarker, LIcon, LPolygon } from "vue2-leaflet";
+import { LMap, LTileLayer, LMarker, LIcon, LPolygon, LPopup } from "vue2-leaflet";
 import { Icon } from "leaflet";
 import Vue from "vue";
 import "leaflet/dist/leaflet.css";
@@ -192,6 +209,7 @@ Vue.component("l-tile-layer", LTileLayer);
 Vue.component("l-marker", LMarker);
 Vue.component("l-icon", LIcon);
 Vue.component("l-polygon", LPolygon);
+Vue.component("l-popup", LPopup);
 
 delete Icon.Default.prototype._getIconUrl;
 
@@ -222,9 +240,7 @@ export default {
       composteShow: false,
       toiletteShow: false,
       gonfleurShow: false,
-      staticAnchor: [16, 37],
-      iconSize: [32, 37],
-      iconSize: 20,
+      staticAnchor: [25, 5],
       checkedQuartiers: [],
       polygons: []
     };
@@ -277,7 +293,7 @@ export default {
           "https://data.nantesmetropole.fr/api/records/1.0/search/?dataset=244400404_defibrillateurs-nantes&rows=158&sort=designation&facet=nature_site"
         )
         .then(response => {
-          this.defibrillateur = response.data.records;
+          this.defibrillateur = response.data.records, console.log(response.data.records);
         }),
       axios
         .get(
