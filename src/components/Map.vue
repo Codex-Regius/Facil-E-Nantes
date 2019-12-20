@@ -344,15 +344,10 @@ export default {
     },
     showPolygon(index) {
       this.polygons[index].show = !this.polygons[index].show;
-<<<<<<< HEAD
       const isEqual = (element) => element == index;  
       if(this.checkedQuartiers.includes(index)) {
         const toSplice = this.checkedQuartiers.findIndex(isEqual);
         this.checkedQuartiers.splice(toSplice, 1);
-=======
-      if (this.checkedQuartiers.includes(index)) {
-        this.checkedQuartiers.splice(0, 1);
->>>>>>> 90bb83088c5cafbdc247d92da397b8f1ea78bfd8
       } else {
         this.checkedQuartiers.push(index);
       }
