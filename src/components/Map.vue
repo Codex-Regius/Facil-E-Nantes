@@ -1,6 +1,6 @@
 <template>
   <div style="height: 500px; width: 100%">
-    <form>
+    <h2> <span>1/</span> CHOISIS TON QUARTIER </h2>
       <ul>
         <li>
           <input type="checkbox" id="all" @click="showAll()" name="all" />
@@ -71,35 +71,37 @@
           <label for="nantesSud">Nantes Sud</label>
         </li>
       </ul>
-    </form>
-    <ul class="firstInput">
-      <li>
-        <input type="checkbox" id="toilette" class="inputItems" value="toilette" v-model="toiletteShow" />
-        <label class="labelIcon" for="toilette"><img class="iconInputToilette" v-bind:class="{ activeToilette: isActiveToilette}" @click="handleIconToilette" src="../../public/Assets/toiletteCheck.png"/> Toilettes Public</label>
-      </li>
-      <li>
-        <input type="checkbox" id="Gonfleur" class="inputItems" value="Gonfleur" v-model="gonfleurShow" />
-        <label class="labelIcon" for="Gonfleur"><img class="iconInput" v-bind:class="{ activeGonfleur: isActiveGonfleur}" @click="handleIconGonfleur" src="../../public/Assets/gonfleurCheck.png"/>Gonfleur à velo en libre service</label>
-      </li>
-      <li>
-        <input type="checkbox" id="Abris-vélo" class="inputItems" value="Abris-vélo" v-model="abrisShow" />
-        <label class="labelIcon" for="Abris-vélo"><img class="iconInput" v-bind:class="{ activeAbris: isActiveAbris}" @click="handleIconAbris" src="../../public/Assets/abrisCheck.png"/>Abris vélo</label>
-      </li>
-      <li>
-        <input type="checkbox" id="Wifi" class="inputItems" value="Wifi" v-model="wifiShow" />
-        <label class="labelIcon" for="Wifi"><img class="iconInput" v-bind:class="{ activeWifi: isActiveWifi}" @click="handleIconWifi" src="../../public/Assets/wifiCheck.png"/>Wifi Public</label>
-      </li>
-    </ul>
-    <ul class="secondInput">
-      <li>
-        <input type="checkbox" id="Composteur" class="inputItems" value="Composteur" v-model="composteShow" />
-        <label class="labelIcon" for="Composteur"><img class="iconInput" v-bind:class="{ activeComposte: isActiveComposte}" @click="handleIconComposte" src="../../public/Assets/composteCheck.png"/>Composteur de quartier</label>
-      </li>
-      <li>
-        <input type="checkbox" id="decheterie" class="inputItems" value="decheterie" v-model="decheteriesShow" />
-        <label class="labelIcon" for="decheterie"><img class="iconInput" v-bind:class="{ activeDecheterie: isActiveDecheterie}" @click="handleIconDecheterie" src="../../public/Assets/recyclerieCheck.png"/>Décheteries</label>
-      </li>
-    </ul>
+    <div class="pointsInterets">
+      <h2><span>2/</span> CHOISIS TON OU TES POINT(S) D'INTERET(S)</h2>
+      <ul class="firstInput">
+        <li>
+          <input type="checkbox" id="toilette" class="inputItems" value="toilette" v-model="toiletteShow" />
+          <label class="labelIcon" for="toilette"><img class="iconInputToilette" v-bind:class="{ activeToilette: isActiveToilette}" @click="handleIconToilette" src="../../public/Assets/toiletteCheck.png"/> Toilettes Public</label>
+        </li>
+        <li>
+          <input type="checkbox" id="Gonfleur" class="inputItems" value="Gonfleur" v-model="gonfleurShow" />
+          <label class="labelIcon" for="Gonfleur"><img class="iconInput" v-bind:class="{ activeGonfleur: isActiveGonfleur}" @click="handleIconGonfleur" src="../../public/Assets/gonfleurCheck.png"/>Gonfleur à velo <br> en libre service</label>
+        </li>
+        <li>
+          <input type="checkbox" id="Abris-vélo" class="inputItems" value="Abris-vélo" v-model="abrisShow" />
+          <label class="labelIcon" for="Abris-vélo"><img class="iconInput" v-bind:class="{ activeAbris: isActiveAbris}" @click="handleIconAbris" src="../../public/Assets/abrisCheck.png"/>Abris vélo</label>
+        </li>
+      </ul>
+      <ul class="secondInput">
+        <li>
+          <input type="checkbox" id="Wifi" class="inputItems" value="Wifi" v-model="wifiShow" />
+          <label class="labelIcon" for="Wifi"><img class="iconInput" v-bind:class="{ activeWifi: isActiveWifi}" @click="handleIconWifi" src="../../public/Assets/wifiCheck.png"/>Wifi Public</label>
+        </li>
+        <li>
+          <input type="checkbox" id="Composteur" class="inputItems" value="Composteur" v-model="composteShow" />
+          <label class="labelIcon" for="Composteur"><img class="iconInput" v-bind:class="{ activeComposte: isActiveComposte}" @click="handleIconComposte" src="../../public/Assets/composteCheck.png"/>Composteur de quartier</label>
+        </li>
+        <li>
+          <input type="checkbox" id="decheterie" class="inputItems" value="decheterie" v-model="decheteriesShow" />
+          <label class="labelIcon" for="decheterie"><img class="iconInput" v-bind:class="{ activeDecheterie: isActiveDecheterie}" @click="handleIconDecheterie" src="../../public/Assets/recyclerieCheck.png"/>Décheteries</label>
+        </li>
+      </ul>
+    </div>
 
     <LMap
       style="height: 80%; width: 100%"
@@ -418,7 +420,7 @@ export default {
             return {
               coords: reverseArray.map(param => param.reverse()),
               show: false,
-              fillColor: "tomato"
+              fillColor: "#F18C00",
             };
           });
         });
@@ -537,10 +539,10 @@ input {
 }
 
 #defibrillateurButton {
-  position: absolute;
+  position: fixed;
   z-index: 999;
-  bottom: 0px;
-  right: 128px;
+  bottom: 40px;
+  right: 40px;
   background-color: rgb(30, 165, 30);
   padding: 6%;
   border-radius: 200px;
@@ -636,5 +638,22 @@ input {
 
 .inputItems{
   display: none;
+}
+
+h2{
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+h2 span{
+  color: #F18C00;
+}
+.pointsInterets{
+  background-color: rgb(240, 240, 240);
+  padding: 6%;
+  margin-top: 20px;
+}
+
+ul li{
+  margin-bottom: 7px;
 }
 </style>

@@ -4,8 +4,8 @@
       <h1 class="facil">{{ facil }}</h1>
       <h1>{{ enantes }}</h1>
     </div>
-    <div>
-      <h2>Prévision Météo de Nantes</h2>
+    <div class="divMeteo">
+      <h3>Prévision Météo de Nantes</h3>
       <div class="meteo">
         <img v-bind:src="meteo[0].observation[0].iconLink + '?apiKey=3eDEt59IRt4OTDgu72sWOEcUtZjEH3MZFuqEoizPP1M'"/>
         <p>{{meteo[0].observation[0].skyDescription}}</p>
@@ -66,6 +66,9 @@ h1{
 .facil{
   color: #007BC1;
   margin-right: 5px;
+}
+.divMeteo{
+  margin-top: 20px;
 }
 
 .meteo{
