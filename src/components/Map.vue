@@ -127,6 +127,10 @@
           {{record.fields.descriptif}}
           <br />
           {{record.fields.conditions}}
+          <br />
+          <a
+            :href="'https://www.google.com/maps/search/?api=1&query=' + record.fields.adresse"
+          >Itinéraire</a>
         </l-popup>
         <l-icon :icon-anchor="staticAnchor">
           <img src="../../public/Assets/GonfleurVeloOK.png" />
@@ -147,7 +151,7 @@
           <br />
           <a
             :href="'https://www.google.com/maps/search/?api=1&query=' + record.fields.adresse"
-          >Intinéraire</a>
+          >Itinéraire</a>
         </l-popup>
         <l-icon :icon-anchor="staticAnchor">
           <img src="../../public/Assets/wcPublicOK.png" />
@@ -165,6 +169,10 @@
           {{record.fields.adresse}}
           <br />
           {{record.fields.categorie}}
+          <br />
+          <a
+            :href="'https://www.google.com/maps/search/?api=1&query=' + record.fields.adresse"
+          >Itinéraire</a>
         </l-popup>
         <l-icon :icon-anchor="staticAnchor">
           <img src="../../public/Assets/ComposteursOK.png" />
@@ -184,7 +192,10 @@
           {{record.fields.descriptif}}
           <br />
           {{record.fields.conditions}}
-          <a href="https://www.google.com/maps/dir/?api=1"></a>
+          <br />
+          <a
+            :href="'https://www.google.com/maps/search/?api=1&query=' + record.fields.adresse"
+          >Itinéraire</a>
         </l-popup>
         <l-icon :icon-anchor="staticAnchor">
           <img src="../../public/Assets/abrisVeloOK.png" />
@@ -202,6 +213,10 @@
           {{record.fields.nom_reseau}}
           <br />
           {{record.fields.adresse}}
+          <br />
+          <a
+            :href="'https://www.google.com/maps/search/?api=1&query=' + record.fields.adresse"
+          >Itinéraire</a>
         </l-popup>
       </LMarker>
       <LMarker
@@ -216,6 +231,10 @@
           {{record.fields.nom_complet}}
           <br />
           {{record.fields.adresse}}
+          <br />
+          <a
+            :href="'https://www.google.com/maps/search/?api=1&query=' + record.fields.adresse"
+          >Itinéraire</a>
         </l-popup>
         <l-icon :icon-anchor="staticAnchor">
           <img src="../../public/Assets/recyclerieOK.png" />
@@ -239,6 +258,10 @@
           Heure ouverture : {{record.fields.heur_ouverture}} Heure fermeture : {{record.fields.heure_fermeture}}
           <br />
           Position : {{record.fields.position_precise}}
+          <br />
+          <a
+            :href="'https://www.google.com/maps/search/?api=1&query=' + record.fields.adresse"
+          >Itinéraire</a>
         </l-popup>
       </LMarker>
       <LPolygon
