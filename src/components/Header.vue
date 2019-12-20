@@ -9,7 +9,7 @@
       <div class="meteo">
         <img v-bind:src="meteo[0].observation[0].iconLink + '?apiKey=3eDEt59IRt4OTDgu72sWOEcUtZjEH3MZFuqEoizPP1M'"/>
         <p>{{meteo[0].observation[0].skyDescription}}</p>
-        <p>{{meteo[0].observation[0].temperature}}°C</p>
+        <p>{{Math.round(meteo[0].observation[0].temperature)}}°C</p>
       </div>
     </div>
   </div>
