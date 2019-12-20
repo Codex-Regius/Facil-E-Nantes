@@ -129,7 +129,7 @@
           {{record.fields.conditions}}
           <br />
           <a
-            :href="'https://www.google.com/maps/search/?api=1&query=' + record.fields.adresse"
+            :href="'https://www.google.com/maps/dir/?api=1&origin=' + yourLatitude +','+ yourLongitude +'&destination='+record.fields.adresse"
           >Itinéraire</a>
         </l-popup>
         <l-icon :icon-anchor="staticAnchor">
