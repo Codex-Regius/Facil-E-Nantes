@@ -3,33 +3,23 @@
     <form>
       <ul>
         <li>
-          <input type="checkbox" id="centreville" @click="showPolygon(5)" name="centrevile" />
+          <input type="checkbox" id="centreville" @click="showPolygon(5)" name="centrevile"/>
           <label for="centreville">Centre ville</label>
         </li>
         <li>
-          <input type="checkbox" id="iledenantes" @click="showPolygon(3)" name="iledenantes" />
+          <input type="checkbox" id="iledenantes" @click="showPolygon(3)" name="iledenantes"/>
           <label for="iledenantes">Ile de nantes</label>
         </li>
         <li>
-          <input type="checkbox" id="malakoff" @click="showPolygon(1)" name="malakoff" />
+          <input type="checkbox" id="malakoff" @click="showPolygon(1)" name="malakoff"/>
           <label for="malakoff">Malakoff Saint-Donatien</label>
         </li>
         <li>
-          <input
-            type="checkbox"
-            id="doulon-bottiere"
-            @click="showPolygon(10)"
-            name="doulon-bottiere"
-          />
+          <input type="checkbox" id="doulon-bottiere" @click="showPolygon(10)" name="doulon-bottiere"/>
           <label for="doulon-bottiere">Doulon-Bottière</label>
         </li>
         <li>
-          <input
-            type="checkbox"
-            id="hautPave-saintFelix"
-            @click="showPolygon(4)"
-            name="hautPave-saintFelix"
-          />
+          <input type="checkbox" id="hautPave-saintFelix" @click="showPolygon(4)" name="hautPave-saintFelix"/>
           <label for="hautPave-saintFelix">Haut Pavé - Saint Felix</label>
         </li>
         <li>
@@ -37,21 +27,11 @@
           <label for="breil-barberie">Breil barberie</label>
         </li>
         <li>
-          <input
-            type="checkbox"
-            id="dervalliere-zola"
-            @click="showPolygon(0)"
-            name="dervalliere-zola"
-          />
+          <input type="checkbox" id="dervalliere-zola" @click="showPolygon(0)" name="dervalliere-zola"/>
           <label for="dervalliere-zola">Dervallières - Zola</label>
         </li>
         <li>
-          <input
-            type="checkbox"
-            id="chantenay-bellevue-sainteAnne"
-            @click="showPolygon(2)"
-            name="chantenay-bellevue-sainteAnne"
-          />
+          <input type="checkbox" id="chantenay-bellevue-sainteAnne" @click="showPolygon(2)" name="chantenay-bellevue-sainteAnne"/>
           <label for="chantenay-bellevue-sainteAnne">Chantenay - Bellevue - Sainte Anne</label>
         </li>
         <li>
