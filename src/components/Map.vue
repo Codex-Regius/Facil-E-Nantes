@@ -331,8 +331,10 @@ export default {
     },
     showPolygon(index) {
       this.polygons[index].show = !this.polygons[index].show;
-      if (this.checkedQuartiers.includes(index)) {
-        this.checkedQuartiers.splice(0, 1);
+      const isEqual = (element) => element == index;  
+      if(this.checkedQuartiers.includes(index)) {
+        const toSplice = this.checkedQuartiers.findIndex(isEqual);
+        this.checkedQuartiers.splice(toSplice, 1);
       } else {
         this.checkedQuartiers.push(index);
       }
@@ -344,8 +346,11 @@ export default {
       let result = quartiers.map(quartier => {
         return inside(record.fields.location, this.polygons[quartier].coords);
       });
-
-      return result[0];
+      if (result.includes(true)){
+        return true;
+      } else {
+        return false
+      }
     }
   },
   computed: {
