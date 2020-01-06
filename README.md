@@ -1,4 +1,4 @@
-# facilenantes
+# Facil E-Nantes
 
 ## Project setup
 ```
@@ -7,13 +7,6 @@ yarn install
 
 ### Compiles and hot-reloads for development
 ```
+node index.js
 yarn serve
 ```
-
-### Compiles and minifies for production
-```
-yarn build
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
